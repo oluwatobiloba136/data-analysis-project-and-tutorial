@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Neil D. Lawrence">
+  <title>Outlook for AI and Machine Learning</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="talks.css"/>
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript"></script>
+      <script type="text/javascript" src="svg_mathjax.js">
+      </script>
+      <script type="text/javascript">
+          new Svg_MathJax().install();
+      </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Outlook for AI and Machine Learning</h1>
+  <p class="author">Neil D. Lawrence</p>
+</section>
+
+<section class="slide level3">
+
+<h4 id="outlook-for-uk-ai-and-machine-learning">Outlook for UK AI and Machine Learning</h4>
+<h4 id="section">2018-05-11</h4>
+<h4 id="neil-d.-lawrence">Neil D. Lawrence</h4>
+<h4 id="amazon-cambridge-and-university-of-sheffield">Amazon Cambridge and <strong>University of Sheffield</strong></h4>
+<p><code>@lawrennd</code> <a href="http://inverseprobability.com">inverseprobability.com</a></p>
+<!-- SECTION The Gartner Hype Cycle -->
+</section>
+<section id="gartner-hype-cycle" class="slide level3">
+<h3>Gartner Hype Cycle</h3>
+<p><img class="negate" src="../slides/diagrams/Gartner_Hype_Cycle.png" width="70%" align="center" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="section-1" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/bd-ds-iot-ml-google-trends000.svg">
+</object>
+</section>
+<section id="section-2" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/bd-ds-iot-ml-google-trends001.svg">
+</object>
+</section>
+<section id="section-3" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/bd-ds-iot-ml-google-trends002.svg">
+</object>
+</section>
+<section id="section-4" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/bd-ds-iot-ml-google-trends003.svg">
+</object>
+<!-- SECTION What is Machine Learning? -->
+</section>
+<section id="what-is-machine-learning" class="slide level3">
+<h3>What is Machine Learning?</h3>
+<div class="fragment">
+<p><span class="math display">\[ \text{data} + \text{model} \xrightarrow{\text{compute}} \text{prediction}\]</span></p>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(\text{data}\)</span> : observations, could be actively or passively acquired (meta-data).</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(\text{model}\)</span> : assumptions, based on previous experience (other data! transfer learning etc), or beliefs about the regularities of the universe. Inductive bias.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(\text{prediction}\)</span> : an action to be taken or a categorization or a quality score.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Royal Society Report: <a href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine Learning: Power and Promise of Computers that Learn by Example</a></li>
+</ul>
+</div>
+</section>
+<section id="what-is-machine-learning-1" class="slide level3">
+<h3>What is Machine Learning?</h3>
+<p><span class="math display">\[\text{data} + \text{model} \xrightarrow{\text{compute}} \text{prediction}\]</span></p>
+<div class="fragment">
+<ul>
+<li>To combine data with a model need:</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>a prediction function</strong> <span class="math inline">\({f}(\cdot)\)</span> includes our beliefs about the regularities of the universe</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><strong>an objective function</strong> <span class="math inline">\({E}(\cdot)\)</span> defines the cost of misprediction.</li>
+</ul>
+<!-- SECTION Natural and Artificial Intelligence: Embodiment Factors -->
+</div>
+</section>
+<section id="embodiment-factors" class="slide level3">
+<h3>“Embodiment Factors”</h3>
+<table>
+<tr>
+<td>
+</td>
+<td align="center">
+<img class="" src="../slides/diagrams/IBM_Blue_Gene_P_supercomputer.jpg" width="40%" align="center" style="background:none; border:none; box-shadow:none;">
+</td>
+<td align="center">
+<img class="" src="../slides/diagrams/ClaudeShannon_MFO3807.jpg" width="25%" align="center" style="background:none; border:none; box-shadow:none;">
+</td>
+</tr>
+<tr>
+<td>
+compute
+</td>
+<td align="center">
+<span class="math display">\[\approx 100 \text{ gigaflops}\]</span>
+</td>
+<td align="center">
+<span class="math display">\[\approx 16 \text{ petaflops}\]</span>
+</td>
+</tr>
+<tr>
+<td>
+communicate
+</td>
+<td align="center">
+<span class="math display">\[1 \text{ gigbit/s}\]</span>
+</td>
+<td align="center">
+<span class="math display">\[100 \text{ bit/s}\]</span>
+</td>
+</tr>
+<tr>
+<td>
+(compute/communicate)
+</td>
+<td align="center">
+<span class="math display">\[10^{4}\]</span>
+</td>
+<td align="center">
+<span class="math display">\[10^{14}\]</span>
+</td>
+</tr>
+</table>
+<p>See <a href="https://arxiv.org/abs/1705.07996">“Living Together: Mind and Machine Intelligence”</a></p>
+<!-- SECTION Evolved Relationship with Information -->
+</section>
+<section id="evolved-relationship" class="slide level3 slide:" data-transition="none">
+<h3>Evolved Relationship</h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/information-flow001.svg">
+</object>
+</section>
+<section id="evolved-relationship-1" class="slide level3 slide:" data-transition="none">
+<h3>Evolved Relationship</h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/information-flow002.svg">
+</object>
+</section>
+<section id="evolved-relationship-2" class="slide level3 slide:" data-transition="none">
+<h3>Evolved Relationship</h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/information-flow003.svg">
+</object>
+</section>
+<section id="effects" class="slide level3">
+<h3>Effects</h3>
+<ul>
+<li>This phenomenon has already revolutionised biology.
+<ul>
+<li>Large scale data acquisition and distribution.</li>
+<li>Transcriptomics, genomics, epigenomics, ‘rich phenomics’.</li>
+</ul></li>
+<li>Great <em>promise</em> for personalized health.</li>
+</ul>
+</section>
+<section id="societal-effects" class="slide level3">
+<h3>Societal Effects</h3>
+<ul>
+<li>Automated decision making within the computer based only on the data.</li>
+<li>A requirement to better understand our own subjective biases to ensure that the human to computer interface formulates the correct conclusions from the data.</li>
+<li>Particularly important where treatments are being prescribed.
+<ul>
+<li>But what is a treatment in the modern era: interventions could be far more subtle.</li>
+</ul></li>
+</ul>
+</section>
+<section id="societal-effects-1" class="slide level3">
+<h3>Societal Effects</h3>
+<ul>
+<li>Shift in dynamic from the direct pathway between human and data to indirect pathway between human and data via the computer</li>
+<li>This change of dynamics gives us the modern and emerging domain of data science</li>
+</ul>
+<!-- SECTION Human Communication -->
+</section>
+<section id="conversation" class="slide level3 slide:" data-transition="none">
+<h3>Conversation</h3>
+<object class="svgplot" align data="../slides/diagrams/anne-bob-conversation000.svg">
+</object>
+<aside class="notes">
+This can be disturbing to humans because we are used to a low bandwidth communication rate.
+</aside>
+</section>
+<section id="conversation-1" class="slide level3 slide:" data-transition="none">
+<h3>Conversation</h3>
+<object class="svgplot" align data="../slides/diagrams/anne-bob-conversation001.svg">
+</object>
+</section>
+<section id="conversation-2" class="slide level3 slide:" data-transition="none">
+<h3>Conversation</h3>
+<object class="svgplot" align data="../slides/diagrams/anne-bob-conversation002.svg">
+</object>
+</section>
+<section id="conversation-3" class="slide level3 slide:" data-transition="none">
+<h3>Conversation</h3>
+<object class="svgplot" align data="../slides/diagrams/anne-bob-conversation003.svg">
+</object>
+</section>
+<section id="conversation-4" class="slide level3 slide:" data-transition="none">
+<h3>Conversation</h3>
+<object class="svgplot" align data="../slides/diagrams/anne-bob-conversation004.svg">
+</object>
+</section>
+<section id="conversation-5" class="slide level3 slide:" data-transition="none">
+<h3>Conversation</h3>
+<object class="svgplot" align data="../slides/diagrams/anne-bob-conversation005.svg">
+</object>
+</section>
+<section id="conversation-6" class="slide level3 slide:" data-transition="none">
+<h3>Conversation</h3>
+<object class="svgplot" align data="../slides/diagrams/anne-bob-conversation006.svg">
+</object>
+</section>
+<section id="conversation-7" class="slide level3 slide:" data-transition="none">
+<h3>Conversation</h3>
+<object class="svgplot" align data="../slides/diagrams/anne-bob-conversation007.svg">
+</object>
+</section>
+<section id="machine-learning-and-narratives" class="slide level3">
+<h3>Machine Learning and Narratives</h3>
+<p><img class="" src="../slides/diagrams/Classic_baby_shoes.jpg" width="60%" align="" style="background:none; border:none; box-shadow:none;"></p>
+<center>
+<em>For sale: baby shoes, never worn.</em>
+</center>
+<aside class="notes">
+Ernest Hemingway’s apocrophal six word novel would mean nothing to a computer.
+</aside>
+</section>
+<section id="heider-and-simmel-1944" class="slide level3">
+<h3>Heider and Simmel (1944)</h3>
+<iframe width="840" height="630" src="https://www.youtube.com/embed/8FIEZXMUM2I?start=7" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</section>
+<section id="section-5" class="slide level3">
+<h3></h3>
+<blockquote>
+<p>There are three types of lies: lies, damned lies and statistics</p>
+<p>??</p>
+</blockquote>
+</section>
+<section id="section-6" class="slide level3">
+<h3></h3>
+<blockquote>
+<p>There are three types of lies: lies, damned lies and statistics</p>
+<p>Benjamin Disraeli</p>
+</blockquote>
+</section>
+<section id="section-7" class="slide level3">
+<h3></h3>
+<blockquote>
+<p>There are three types of lies: lies, damned lies and statistics</p>
+<p>Benjamin Disraeli 1804-1881</p>
+</blockquote>
+</section>
+<section id="mathematical-statistics" class="slide level3">
+<h3><em>Mathematical</em> Statistics</h3>
+<ul>
+<li>‘Founded’ by Karl Pearson (1857-1936)</li>
+</ul>
+<p><img class="" src="../slides/diagrams/Portrait_of_Karl_Pearson.jpg" width="30%" align="" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="section-8" class="slide level3">
+<h3></h3>
+<blockquote>
+<p>There are three types of lies: lies, damned lies and ‘big data’</p>
+<p>Neil Lawrence 1972-?</p>
+</blockquote>
+</section>
+<section id="mathematical-data-science" class="slide level3">
+<h3>‘Mathematical Data Science’</h3>
+<ul>
+<li>‘Founded’ by ? (?-?)</li>
+</ul>
+<p><img class="" src="../slides/diagrams/Question_mark.png" width="30%" align="" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="machine-learning" class="slide level3 slide:" data-transition="none">
+<h3>Machine Learning</h3>
+<ul>
+<li>Driver of two different domains:
+<ol type="1">
+<li><em>Data Science</em>: arises from the fact that we now capture data by happenstance.</li>
+<li><em>Artificial Intelligence</em>: emulation of human behaviour.</li>
+</ol></li>
+<li>Connection: Internet of Things</li>
+</ul>
+</section>
+<section id="machine-learning-1" class="slide level3 slide:" data-transition="none">
+<h3>Machine Learning</h3>
+<ul>
+<li>Driver of two different domains:
+<ol type="1">
+<li><em>Data Science</em>: arises from the fact that we now capture data by happenstance.</li>
+<li><em>Artificial Intelligence</em>: emulation of human behaviour.</li>
+</ol></li>
+<li>Connection: Internet of <del>Things</del></li>
+</ul>
+</section>
+<section id="machine-learning-2" class="slide level3 slide:" data-transition="none">
+<h3>Machine Learning</h3>
+<ul>
+<li>Driver of two different domains:
+<ol type="1">
+<li><em>Data Science</em>: arises from the fact that we now capture data by happenstance.</li>
+<li><em>Artificial Intelligence</em>: emulation of human behaviour.</li>
+</ol></li>
+<li>Connection: Internet of People</li>
+</ul>
+</section>
+<section id="what-does-machine-learning-do" class="slide level3">
+<h3>What does Machine Learning do?</h3>
+<ul>
+<li>ML Automates through Data
+<ul>
+<li><em>Strongly</em> related to statistics.</li>
+<li>Field underpins revolution in <em>data science</em> and <em>AI</em></li>
+</ul></li>
+<li>With AI:
+<ul>
+<li><em>logic</em>, <em>robotics</em>, <em>computer vision</em>, <em>speech</em></li>
+</ul></li>
+<li>With Data Science:
+<ul>
+<li><em>databases</em>, <em>data mining</em>, <em>statistics</em>, <em>visualization</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="what-does-machine-learning-do-1" class="slide level3">
+<h3>What does Machine Learning do?</h3>
+<ul>
+<li>Automation scales by codifying processes and automating them.</li>
+<li>Need:
+<ul>
+<li>Interconnected components</li>
+<li>Compatible components</li>
+</ul></li>
+<li>Early examples:
+<ul>
+<li>cf Colt 45, Ford Model T</li>
+</ul></li>
+</ul>
+</section>
+<section id="codify-through-mathematical-functions" class="slide level3">
+<h3>Codify Through Mathematical Functions</h3>
+<ul>
+<li>How does machine learning work?</li>
+<li>Jumper (jersey/sweater) purchase with logistic regression <span class="math display">\[ \text{odds} = \frac{p(\text{bought})}{p(\text{not bought})} \]</span> <span class="math display">\[ \log \text{odds}  = \beta_0 + \beta_1 \text{age} + \beta_2 \text{latitude}\]</span></li>
+</ul>
+</section>
+<section id="codify-through-mathematical-functions-1" class="slide level3">
+<h3>Codify Through Mathematical Functions</h3>
+<ul>
+<li>How does machine learning work?</li>
+<li>Jumper (jersey/sweater) purchase with logistic regression <span class="math display">\[ p(\text{bought}) =  {\sigma\left(\beta_0 + \beta_1 \text{age} + \beta_2 \text{latitude}\right)}\]</span></li>
+</ul>
+</section>
+<section id="codify-through-mathematical-functions-2" class="slide level3">
+<h3>Codify Through Mathematical Functions</h3>
+<ul>
+<li>How does machine learning work?</li>
+<li>Jumper (jersey/sweater) purchase with logistic regression <span class="math display">\[ p(\text{bought}) =  {\sigma\left(\boldsymbol{\beta}^\top {{\bf {x}}}\right)}\]</span></li>
+</ul>
+</section>
+<section id="codify-through-mathematical-functions-3" class="slide level3">
+<h3>Codify Through Mathematical Functions</h3>
+<ul>
+<li>How does machine learning work?</li>
+<li>Jumper (jersey/sweater) purchase with logistic regression <span class="math display">\[ {y}=  {f}\left({{\bf {x}}}, \boldsymbol{\beta}\right)\]</span></li>
+</ul>
+<div class="fragment">
+<p>We call <span class="math inline">\({f}(\cdot)\)</span> the <em>prediction function</em></p>
+</div>
+</section>
+<section id="fit-to-data" class="slide level3">
+<h3>Fit to Data</h3>
+<ul>
+<li>Use an objective function <span class="math display">\[{E}(\boldsymbol{\beta}, {\mathbf{Y}}, {{\bf X}})\]</span></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>E.g. least squares <span class="math display">\[{E}(\boldsymbol{\beta}, {\mathbf{Y}}, {{\bf X}}) = \sum_{i=1}^{n}\left({y}_i - {f}({{\bf {x}}}_i, \boldsymbol{\beta})\right)^2.\]</span></li>
+</ul>
+</div>
+</section>
+<section id="two-components" class="slide level3">
+<h3>Two Components</h3>
+<ul>
+<li>Prediction function, <span class="math inline">\({f}(\cdot)\)</span></li>
+<li>Objective function, <span class="math inline">\({E}(\cdot)\)</span></li>
+</ul>
+</section>
+<section id="deep-learning" class="slide level3">
+<h3>Deep Learning</h3>
+<ul>
+<li><p>These are interpretable models: vital for disease etc.</p></li>
+<li><p>Modern machine learning methods are less interpretable</p></li>
+<li><p>Example: face recognition</p></li>
+</ul>
+</section>
+<section id="section-9" class="slide level3">
+<h3></h3>
+<p><span class="fragment fade-in"><small>Outline of the DeepFace architecture. A front-end of a single convolution-pooling-convolution filtering on the rectified input, followed by three locally-connected layers and two fully-connected layers. Color illustrates feature maps produced at each layer. The net includes more than 120 million parameters, where more than 95% come from the local and fully connected.</small></span></p>
+<p><img class="" src="../slides/diagrams/deepface_neg.png" width="100%" align="" style="background:none; border:none; box-shadow:none;"></p>
+<p align="right">
+<small>Source: DeepFace</small>
+</p>
+</section>
+<section id="section-10" class="slide level3">
+<h3></h3>
+<p><img class="" src="../slides/diagrams/576px-Early_Pinball.jpg" width="50%" align="" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="section-11" class="slide level3">
+<h3></h3>
+<object class="svgplot" align data="../slides/diagrams/pinball001.svg">
+</object>
+</section>
+<section id="section-12" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<object class="svgplot" align data="../slides/diagrams/pinball002.svg">
+</object>
+</section>
+<section id="uncertainty-and-learning" class="slide level3">
+<h3>Uncertainty and Learning</h3>
+<ul>
+<li><p>In this “vanilla” form these machines “don’t know when they don’t know”.</p></li>
+<li><p>Doubt is vital in real world decision making.</p></li>
+<li><p>Incorporating this in systems is a long time focus of my technical research.</p></li>
+</ul>
+</section>
+<section id="comparison-with-human-learning-embodiment" class="slide level3">
+<h3>Comparison with Human Learning &amp; Embodiment</h3>
+<ul>
+<li>The emulation of intelligence does not exhibit all the meta-modelling humans perform.</li>
+</ul>
+</section>
+<section id="data-science" class="slide level3">
+<h3>Data Science</h3>
+<ul>
+<li>Industrial Revolution 4.0?</li>
+<li><em>Industrial Revolution</em> (1760-1840) term coined by Arnold Toynbee, late 19th century.</li>
+<li>Maybe: But this one is dominated by <em>data</em> not <em>capital</em></li>
+<li>That presents <em>challenges</em> and <em>opportunities</em></li>
+</ul>
+<p>compare <a href="https://www.theguardian.com/media-network/2015/mar/05/digital-oligarchy-algorithms-personal-data">digital oligarchy</a> vs <a href="https://www.theguardian.com/media-network/2015/aug/25/africa-benefit-data-science-information">how Africa can benefit from the data revolution</a></p>
+<ul>
+<li>Apple vs Nokia: How you handle disruption.</li>
+</ul>
+</section>
+<section id="a-time-for-professionalisation" class="slide level3">
+<h3>A Time for Professionalisation?</h3>
+<ul>
+<li>New technologies historically led to new professions:
+<ul>
+<li>Brunel (born 1806): Civil, mechanical, naval</li>
+<li>Tesla (born 1856): Electrical and power</li>
+<li>William Shockley (born 1910): Electronic</li>
+<li>Watts S. Humphrey (born 1927): Software</li>
+</ul></li>
+</ul>
+</section>
+<section id="why" class="slide level3">
+<h3>Why?</h3>
+<ul>
+<li>Codification of best practice.</li>
+<li>Developing trust</li>
+</ul>
+</section>
+<section id="where-are-we" class="slide level3">
+<h3>Where are we?</h3>
+<ul>
+<li>Perhaps around the 1980s of programming.
+<ul>
+<li>We understand <code>if</code>, <code>for</code>, and procedures</li>
+<li>But we don’t share best practice.</li>
+</ul></li>
+<li>Let’s <em>avoid</em> the over formalisation of software engineering.</li>
+</ul>
+</section>
+<section id="the-software-crisis" class="slide level3">
+<h3>The Software Crisis</h3>
+<blockquote>
+<p>The major cause of the software crisis is that the machines have become several orders of magnitude more powerful! To put it quite bluntly: as long as there were no machines, programming was no problem at all; when we had a few weak computers, programming became a mild problem, and now we have gigantic computers, programming has become an equally gigantic problem.</p>
+<p>Edsger Dijkstra (1930-2002), The Humble Programmer</p>
+</blockquote>
+</section>
+<section id="the-data-crisis" class="slide level3">
+<h3>The Data Crisis</h3>
+<blockquote>
+<p>The major cause of the data crisis is that machines have become more interconnected than ever before. Data access is therefore cheap, but data quality is often poor. What we need is cheap high quality data. That implies that we develop processes for improving and verifying data quality that are efficient.</p>
+<p>There would seem to be two ways for improving efficiency. Firstly, we should not duplicate work. Secondly, where possible we should automate work.</p>
+<p>Me</p>
+</blockquote>
+</section>
+<section id="section-13" class="slide level3">
+<h3></h3>
+<p><img class="" src="../slides/diagrams/Medievalplowingwoodcut.jpg" width="" align="" style="background:none; border:none; box-shadow:none;"></p>
+<p><a href="https://www.theguardian.com/media-network/2015/nov/16/information-barons-threaten-autonomy-privacy-online">Information Barons threaten our Privacy</a></p>
+</section>
+<section id="rest-of-the-talk" class="slide level3">
+<h3>Rest of the Talk</h3>
+<ul>
+<li>Importance of data infrastructure</li>
+</ul>
+<!--include{_data-science/includes/data-infrastructure.md}-->
+<!--include{_data-science/includes/data-readiness-levels.md}-->
+<!--include{_data-science/includes/data-science-as-debugging.md}-->
+<!-- SECTION Public Use of Data for Public Good -->
+</section>
+<section id="understanding-patient-data" class="slide level3">
+<h3>Understanding Patient Data</h3>
+<p><a href="https://wellcome.ac.uk/news/understanding-patient-data-launches-today"><img class="" src="../slides/diagrams/health/understanding-patient-data.png" width="" align="" style="background:none; border:none; box-shadow:none;"></a></p>
+</section>
+<section id="wannacry" class="slide level3">
+<h3>WannaCry</h3>
+<p><a href="https://www.telegraph.co.uk/news/2017/05/12/nhs-hit-major-cyber-attack-hackers-demanding-ransom/"><img class="" src="../slides/diagrams/health/wannacry.png" width="" align="" style="background:none; border:none; box-shadow:none;"></a></p>
+</section>
+<section id="bush-pilot-model" class="slide level3">
+<h3>Bush Pilot Model</h3>
+<p><img class="" src="../slides/diagrams/health/bush-pilot-grant-mcconachie.jpg" width="60%" align="" style="background:none; border:none; box-shadow:none;"></p>
+<center>
+<em>Bush Pilot Grant McConachie</em>
+</center>
+</section>
+<section id="section-14" class="slide level3">
+<h3></h3>
+<ul>
+<li>The difference between <em>capability</em> and <em>intent</em>.</li>
+</ul>
+</section>
+<section id="section-15" class="slide level3">
+<h3></h3>
+<img class="" src="../slides/diagrams/health/British_Airways_at_SFO.jpg" width="50%" align="" style="background:none; border:none; box-shadow:none;">
+<center>
+<em>British Airways 747 at SFO</em>
+</center>
+</section>
+<section id="section-16" class="slide level3">
+<h3></h3>
+<p><a href="https://www.amazon.co.uk/Black-Box-Thinking-Surprising-Success-ebook/dp/B00PW634YQ"><img class="" src="../slides/diagrams/health/black-box-thinking.jpg" width="" align="" style="background:none; border:none; box-shadow:none;"></a></p>
+<!--include{_data-science/includes/gdpr.md}-->
+<!--include{_ai/includes/government-reports.md}-->
+<!-- SECTION Data Trusts -->
+</section>
+<section id="section-17" class="slide level3">
+<h3></h3>
+<p><a href="https://www.theguardian.com/media-network/2016/jun/03/data-trusts-privacy-fears-feudalism-democracy"><img class="" src="../slides/diagrams/data-science/data-trusts.png" width="100%" align="" style="background:none; border:none; box-shadow:none;"></a></p>
+</section>
+<section id="section-18" class="slide level3">
+<h3></h3>
+<p><a href="https://www.out-law.com/en/articles/2017/october/review-calls-for-data-trusts-to-help-grow-artificial-intelligence-in-the-uk/"><img class="" src="../slides/diagrams/data-science/data-trusts-review.png" width="" align="" style="background:none; border:none; box-shadow:none;"></a></p>
+</section>
+<section id="section-19" class="slide level3">
+<h3></h3>
+<!--include{_ml/includes/resolve-deploy-innovate.md}-->
+<!--include{_ai/includes/ml-systems-design-long.md}-->
+</section>
+<section id="thanks" class="slide level3">
+<h3>Thanks!</h3>
+<ul>
+<li>twitter: @lawrennd</li>
+<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
+<li><a href="https://medium.com/@mijordan3/artificial-intelligence-the-revolution-hasnt-happened-yet-5e1d5812e1e7">Mike Jordan’s Medium Post</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Transition style
+        transition: 'None', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

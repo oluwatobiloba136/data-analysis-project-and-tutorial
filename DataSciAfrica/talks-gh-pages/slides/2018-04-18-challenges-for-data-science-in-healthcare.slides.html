@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Neil D. Lawrence">
+  <title>Challenges for Data Science in Healthcare</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="talks.css"/>
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_SVG" type="text/javascript"></script>
+      <script type="text/javascript" src="svg_mathjax.js">
+      </script>
+      <script type="text/javascript">
+          new Svg_MathJax().install();
+      </script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">Challenges for Data Science in Healthcare</h1>
+  <p class="author">Neil D. Lawrence</p>
+</section>
+
+<section id="section" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<blockquote>
+<p>There are three types of lies: lies, damned lies and statistics</p>
+<p>??</p>
+</blockquote>
+</section>
+<section id="section-1" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<blockquote>
+<p>There are three types of lies: lies, damned lies and statistics</p>
+<p>Benjamin Disraeli</p>
+</blockquote>
+</section>
+<section id="section-2" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<blockquote>
+<p>There are three types of lies: lies, damned lies and statistics</p>
+<p>Benjamin Disraeli 1804-1881</p>
+</blockquote>
+</section>
+<section id="mathematical-statistics" class="slide level3">
+<h3><em>Mathematical</em> Statistics</h3>
+<ul>
+<li>'Founded' by Karl Pearson (1857-1936)</li>
+</ul>
+<p><img class="" src="../slides/diagrams/Portrait_of_Karl_Pearson.jpg" width="30%" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="section-3" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<blockquote>
+<p>There are three types of lies: lies, damned lies and 'big data'</p>
+<p>Neil Lawrence 1972-?</p>
+</blockquote>
+</section>
+<section id="mathematical-data-science" class="slide level3">
+<h3>'Mathematical Data Science'</h3>
+<ul>
+<li>'Founded' by ? (?-?)</li>
+</ul>
+<p><img class="" src="../slides/diagrams/Question_mark.png" width="30%" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="what-is-machine-learning" class="slide level3" data-transition="none">
+<h3>What is Machine Learning?</h3>
+<div class="fragment">
+<p><span class="math display">\[ \text{data} + \text{model} \rightarrow \text{prediction}\]</span></p>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(\text{data}\)</span> : observations, could be actively or passively acquired (meta-data).</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(\text{model}\)</span> : assumptions, based on previous experience (other data! transfer learning etc), or beliefs about the regularities of the universe. Inductive bias.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(\text{prediction}\)</span> : an action to be taken or a categorization or a quality score.</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Royal Society Report: <a href="https://royalsociety.org/~/media/policy/projects/machine-learning/publications/machine-learning-report.pdf">Machine Learning: Power and Promise of Computers that Learn by Example</a></li>
+</ul>
+</div>
+</section>
+<section id="machine-learning-as-the-driver-..." class="slide level3 slide:" data-transition="none">
+<h3>Machine Learning as the Driver ...</h3>
+<p>... of two different domains</p>
+<ol type="1">
+<li><p><em>Data Science</em>: arises from the fact that we now capture data by happenstance.</p></li>
+<li><p><em>Artificial Intelligence</em>: emulation of human behaviour.</p></li>
+</ol>
+</section>
+<section id="what-does-machine-learning-do" class="slide level3 slide:" data-transition="none">
+<h3>What does Machine Learning do?</h3>
+<ul>
+<li>ML Automates through Data
+<ul>
+<li><em>Strongly</em> related to statistics.</li>
+<li>Field underpins revolution in <em>data science</em> and <em>AI</em></li>
+</ul></li>
+<li><p>With AI: logic, robotics, computer vision, speech</p></li>
+<li><p>With Data Science: databases, data mining, statistics, visualization</p></li>
+</ul>
+</section>
+<section id="background-big-data" class="slide level3 slide:" data-transition="none">
+<h3>Background: Big Data</h3>
+<ul>
+<li><p>The pervasiveness of data brings forward particular challenges.</p></li>
+<li><p>Those challenges are most sharply in focus for personalized health.</p></li>
+<li><p>Particular opportunities, in challenging areas such as <em>mental health</em>.</p></li>
+</ul>
+</section>
+<section id="evolved-relationship" class="slide level3 slide:" data-transition="none">
+<h3>Evolved Relationship</h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/information-flow001.svg">
+</object>
+</section>
+<section id="evolved-relationship-1" class="slide level3 slide:" data-transition="none">
+<h3>Evolved Relationship</h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/information-flow002.svg">
+</object>
+</section>
+<section id="evolved-relationship-2" class="slide level3 slide:" data-transition="none">
+<h3>Evolved Relationship</h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/information-flow003.svg">
+</object>
+</section>
+<section id="embodiment-factors" class="slide level3">
+<h3>&quot;Embodiment Factors&quot;</h3>
+<table>
+<tr>
+<td>
+</td>
+<td align="center">
+<img src="../slides/diagrams/IBM_Blue_Gene_P_supercomputer.jpg" width="60%" style="background:none; border:none; box-shadow:none;" align="center">
+</td>
+<td align="center">
+<img src="../slides/diagrams/ClaudeShannon_MFO3807.jpg" width="100%" style="background:none; border:none; box-shadow:none;" align="center">
+</td>
+</tr>
+<tr>
+<td>
+compute
+</td>
+<td align="center">
+~10 gigaflops
+</td>
+<td align="center">
+~ 1000 teraflops?
+</td>
+</tr>
+<tr>
+<td>
+communicate
+</td>
+<td align="center">
+~1 gigbit/s
+</td>
+<td align="center">
+~ 100 bit/s
+</tr>
+<td>
+(compute/communicate)
+</td>
+<td align="center">
+10
+</td>
+<td align="center">
+~ 10<sup>13</sup>
+</tr>
+</table>
+<p>See <a href="https://arxiv.org/abs/1705.07996">&quot;Living Together: Mind and Machine Intelligence&quot;</a></p>
+</section>
+<section id="evolved-relationship-3" class="slide level3 slide:" data-transition="none">
+<h3>Evolved Relationship</h3>
+<object class="svgplot" align data="../slides/diagrams/data-science/information-flow003.svg">
+</object>
+</section>
+<section id="effects" class="slide level3 slide:" data-transition="none">
+<h3>Effects</h3>
+<ul>
+<li><p>This phenomenon has already revolutionised biology.</p></li>
+<li><p>Large scale data acquisition and distribution.</p></li>
+<li><p>Transcriptomics, genomics, epigenomics, 'rich phenomics'.</p></li>
+<li><p>Great <em>promise</em> for personalized health.</p></li>
+</ul>
+</section>
+<section id="societal-effects" class="slide level3 slide:" data-transition="none">
+<h3>Societal Effects</h3>
+<ul>
+<li><p>Automated decision making within the computer based only on the data.</p></li>
+<li><p>A requirement to better understand our own subjective biases to ensure that the human to computer interface formulates the correct conclusions from the data.</p></li>
+<li><p>Particularly important where treatments are being prescribed.</p></li>
+<li><p>But what is a treatment in the modern era: interventions could be far more subtle.</p></li>
+</ul>
+</section>
+<section id="societal-effects-1" class="slide level3 slide:" data-transition="none">
+<h3>Societal Effects</h3>
+<ul>
+<li><p>Shift in dynamic from the direct pathway between human and data to indirect pathway between human and data via the computer</p></li>
+<li><p>This change of dynamics gives us the modern and emerging domain of data science</p></li>
+</ul>
+<!--
+### Challenges {.slide: data-transition="none"}
+
+1. Paradoxes of the Data Society
+
+2. Quantifying the Value of Data
+
+3. Privacy, loss of control, marginalization
+
+
+### Breadth vs Depth Paradox
+
+* Able to quantify to a greater and greater degree the actions of individuals
+
+* But less able to characterize society
+
+* As we measure more, we understand less
+
+### What?
+
+* Perhaps greater preponderance of data is making society itself more complex
+
+* Therefore traditional approaches to measurement are failing
+
+* Curate's egg of a society: it is only 'measured in parts'
+
+### Wood or Tree
+
+* Can either see a wood or a tree. 
+
+<img class="" src="../slides/diagrams/Grib_skov.jpg" width="50%" style="background:none; border:none; box-shadow:none;">
+<!-- https://upload.wikimedia.org/wikipedia/commons/5/5b/Grib_skov.jpg-->
+</section>
+<section id="examples" class="slide level3">
+<h3>Examples</h3>
+<ul>
+<li><p>Election polls (UK 2015 elections, EU referendum, US 2016 elections)</p></li>
+<li><p>Clinical trials vs personalized medicine: Obtaining statistical power where interventions are subtle. e.g. social media</p></li>
+</ul>
+</section>
+<section id="also-need" class="slide level3 slide:" data-transition="none">
+<h3>Also need</h3>
+<ul>
+<li>More classical statistics!
+<ul>
+<li>Like the 'paperless office'</li>
+</ul></li>
+<li><p>A better characterization of human (see later)</p></li>
+<li>Larger studies (100,000 genome)
+<ul>
+<li>Combined with complex models: algorithmic challenges--&gt;</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-software-crisis" class="slide level3">
+<h3>The Software Crisis</h3>
+<blockquote>
+<p>The major cause of the software crisis is that the machines have become several orders of magnitude more powerful! To put it quite bluntly: as long as there were no machines, programming was no problem at all; when we had a few weak computers, programming became a mild problem, and now we have gigantic computers, programming has become an equally gigantic problem.</p>
+<p>Edsger Dijkstra, The Humble Programmer</p>
+</blockquote>
+</section>
+<section id="the-data-crisis" class="slide level3">
+<h3>The Data Crisis</h3>
+<blockquote>
+<p>The major cause of the data crisis is that machines have become more interconnected than ever before. Data access is therefore cheap, but data quality is often poor. What we need is cheap high quality data. That implies that we develop processes for improving and verifying data quality that are efficient.</p>
+<p>There would seem to be two ways for improving efficiency. Firstly, we should not duplicate work. Secondly, where possible we should automate work.</p>
+<p>Me</p>
+</blockquote>
+</section>
+<section id="quantifying-the-value-of-data" class="slide level3">
+<h3>Quantifying the Value of Data</h3>
+<p>There's a sea of data, but most of it is undrinkable</p>
+<p><img class="" src="../slides/diagrams/sea-water-ocean-waves.jpg" width="50%" style="background:none; border:none; box-shadow:none;"></p>
+<p>We require data-desalination before it can be consumed!</p>
+</section>
+<section id="data" class="slide level3">
+<h3>Data</h3>
+<ul>
+<li>90% of our time is spent on validation and integration (Leo Anthony Celi)</li>
+<li>&quot;The Dirty Work We Don't Want to Think About&quot; (Eric Xing)</li>
+<li>&quot;Voodoo to get it decompressed&quot; (Francisco Giminez?)</li>
+<li>In health care clinicians collect the data and often control the direction of research through guardianship of data.</li>
+</ul>
+</section>
+<section id="value" class="slide level3">
+<h3>Value</h3>
+<ul>
+<li>How do we measure value in the data economy?</li>
+<li>How do we encourage data workers: curation and management</li>
+<li>Incentivization for sharing and production.</li>
+<li>Quantifying the value in the contribution of <em>each actor</em>.</li>
+</ul>
+</section>
+<section id="data-readiness-levels" class="slide level3">
+<h3>Data Readiness Levels</h3>
+<p><a href="https://arxiv.org/pdf/1705.02245.pdf"><img class="" src="../slides/diagrams/data-science/data-readiness-levels.png" width="" style="background:none; border:none; box-shadow:none;"></a></p>
+<p><a href="http://inverseprobability.com/2017/01/12/data-readiness-levels">Data Readiness Levels</a></p>
+</section>
+<section id="three-grades-of-data-readiness" class="slide level3">
+<h3>Three Grades of Data Readiness:</h3>
+<ul>
+<li><p>Grade C - accessibility</p></li>
+<li><p>Grade B - validity</p></li>
+<li><p>Grade A - usability</p></li>
+</ul>
+</section>
+<section id="accessibility-grade-c" class="slide level3">
+<h3>Accessibility: Grade C</h3>
+<ul>
+<li><em>Hearsay</em> data.</li>
+<li>Availability, is it actually being recorded?</li>
+<li>privacy or legal constraints on the accessibility of the recorded data, have ethical constraints been alleviated?</li>
+<li>Format: log books, PDF ...</li>
+<li>limitations on access due to topology (e.g. it's distributed across a number of devices)</li>
+<li>At the end of Grade C data is ready to be loaded into analysis software (R, SPSS, Matlab, Python, Mathematica)</li>
+</ul>
+</section>
+<section id="validity-grade-b" class="slide level3">
+<h3>Validity: Grade B</h3>
+<ul>
+<li>faithfulness and representation</li>
+<li>visualisations.</li>
+<li>exploratory data analysis</li>
+<li>noise characterisation.</li>
+<li>Missing values.</li>
+<li>Schema alignment, record linkage, data fusion?</li>
+<li>Example, was a column or columns accidentally perturbed (e.g. through a sort operation that missed one or more columns)? Or was a <a href="http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-5-80">gene name accidentally converted to a date</a>?</li>
+<li>At the end of Grade B, ready to define a candidate question, the context, load into OpenML</li>
+</ul>
+</section>
+<section id="usability-grade-a" class="slide level3">
+<h3>Usability: Grade A</h3>
+<ul>
+<li>The usability of data</li>
+<li>Grade A is about data in context.</li>
+<li>Consider appropriateness of a given data set to answer a particular question or to be subject to a particular analysis.</li>
+<li>Data integration?</li>
+<li>At the end of Grade A it's ready for data platforms such as RAMP, Kaggle, define a <em>task</em> in OpenML.</li>
+</ul>
+</section>
+<section id="understanding-patient-data" class="slide level3 slide:" data-transition="none">
+<h3>Understanding Patient Data</h3>
+<p><a href="https://wellcome.ac.uk/news/understanding-patient-data-launches-today"><img class="" src="../slides/diagrams/health/understanding-patient-data.png" width="" style="background:none; border:none; box-shadow:none;"></a></p>
+</section>
+<section id="wannacry" class="slide level3 slide:" data-transition="none">
+<h3>WannaCry</h3>
+<p><a href="https://www.telegraph.co.uk/news/2017/05/12/nhs-hit-major-cyber-attack-hackers-demanding-ransom/"><img class="" src="../slides/diagrams/health/wannacry.png" width="" style="background:none; border:none; box-shadow:none;"></a></p>
+</section>
+<section id="section-4" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<ul>
+<li>The difference between <em>capability</em> and <em>intent</em>.</li>
+</ul>
+</section>
+<section id="section-5" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<p><img class="" src="../slides/diagrams/health/British_Airways_at_SFO.jpg" width="" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="section-6" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<p><a href="https://www.amazon.co.uk/Black-Box-Thinking-Surprising-Success-ebook/dp/B00PW634YQ"><img class="" src="../slides/diagrams/health/black-box-thinking.jpg" width="" style="background:none; border:none; box-shadow:none;"></a></p>
+</section>
+<section id="section-7" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<p>§<a href="https://www.theguardian.com/media-network/2016/jun/03/data-trusts-privacy-fears-feudalism-democracy"><img class="" src="../slides/diagrams/data-science/data-trusts.png" width="100%" style="background:none; border:none; box-shadow:none;"></a></p>
+</section>
+<section id="section-8" class="slide level3 slide:" data-transition="none">
+<h3></h3>
+<p><a href="https://www.out-law.com/en/articles/2017/october/review-calls-for-data-trusts-to-help-grow-artificial-intelligence-in-the-uk/"><img class="" src="../slides/diagrams/data-science/data-trusts-review.png" width="" style="background:none; border:none; box-shadow:none;"></a></p>
+<!--
+### Privacy, Loss of Control and Marginalization
+
+* Society is becoming harder to monitor
+
+* Individual is becoming easier to monitor
+
+###  Conversation {.slide: data-transition="none"}
+
+<object class="svgplot" align="" data="../slides/diagrams/anne-bob001.svg"></object>
+    
+###  Conversation {.slide: data-transition="none"}
+
+<object class="svgplot" align="" data="../slides/diagrams/anne-bob002.svg"></object>
+
+###  Conversation {.slide: data-transition="none"}
+
+<object class="svgplot" align="" data="../slides/diagrams/anne-bob003.svg"></object>
+
+###  Modelling {.slide: data-transition="none"}
+
+<object class="svgplot" align="" data="../slides/diagrams/anne-alone.svg"></object>
+
+###  Modelling {.slide: data-transition="none"}
+
+<object class="svgplot" align="" data="../slides/diagrams/bob-alone.svg"></object>
+
+
+
+
+### Hate Speech or Political Dissent?
+
+* social media monitoring for 'hate speech' can be easily turned to political dissent monitoring
+
+
+### Marketing
+
+* can become more sinister when the target of the marketing is well understood and the (digital) environment of the target is also so well controlled
+
+
+### Free Will {.slide: data-transition="none"}
+
+*  What does it mean if a computer can predict our individual behavior better than we ourselves can?
+
+
+### Discrimination {.slide: data-transition="none"}
+
+* Potential for explicit and implicit discrimination on the basis of race, religion, sexuality, health status
+
+* All prohibited under European law, but can pass unawares, or be implicit
+
+* GDPR: General Data Protection Regulation
+
+### Discrimination {.slide: data-transition="none"}
+
+* Potential for explicit and implicit discrimination on the basis of race, religion, sexuality, health status
+
+* All prohibited under European law, but can pass unawares, or be implicit
+
+* GDPR: Good Data Practice Rules
+
+
+### Marginalization
+
+* Credit scoring, insurance, medical treatment
+* What if certain sectors of society are under-represented in our analysis?
+* What if Silicon Valley develops everything for us?
+
+### Digital Revolution and Inequality?
+
+<img class="" src="../slides/diagrams/woman-tends-house-in-village-of-uganda-africa.jpg" width="50%" style="background:none; border:none; box-shadow:none;">
+
+### Amelioration
+
+* Work to ensure individual retains control of their own data
+* We accept privacy in our real lives, need to accept it in our digital
+* Control of persona and ability to project
+* Need better technological solutions: trust and algorithms.
+-->
+</section>
+<section id="conclusion" class="slide level3 slide:" data-transition="none">
+<h3>Conclusion</h3>
+<ul>
+<li>Data science offers a great deal of promise for healthcare</li>
+<li>There are challenges and pitfalls</li>
+<li>Here discussed two solutions for the Data Crisis
+<ol type="1">
+<li>Data Readiness Levels</li>
+<li>Data Trusts</li>
+</ol></li>
+</ul>
+</section>
+<section id="thanks" class="slide level3 slide:" data-transition="none">
+<h3>Thanks!</h3>
+<ul>
+<li>twitter: @lawrennd</li>
+<li>blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a></li>
+<li><a href="https://www.theguardian.com/profile/neil-lawrence">Guardian articles</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

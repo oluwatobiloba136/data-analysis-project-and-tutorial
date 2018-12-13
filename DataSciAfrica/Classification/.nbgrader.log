@@ -1,0 +1,127 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/admin/OneDrive - United Nations Development Programme/2018-Projects/DSA-Abuja/Materials/Classification
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8892/?token=087b6f1b227ceaa1bd18fea7385835d86c7937fa75e8ba19
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | CRITICAL] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8892/?token=087b6f1b227ceaa1bd18fea7385835d86c7937fa75e8ba19
+[NotebookApp | INFO] Accepting one-time-token-authenticated connection from ::1
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Kernel started: c90ff70d-5456-4555-91f2-05f6636e36e1
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel c90ff70d-5456-4555-91f2-05f6636e36e1
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | WARNING] Notebook Malaria classification example.ipynb is not trusted
+[NotebookApp | INFO] Kernel started: 9ed50010-fab1-4194-ab5d-64a12eee0f7f
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 9ed50010-fab1-4194-ab5d-64a12eee0f7f
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | WARNING] Notebook Malaria classification example.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | WARNING] Notebook Malaria classification example.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | WARNING] Notebook Malaria classification example.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | WARNING] Notebook Malaria classification example.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | WARNING] Notebook Malaria classification example.ipynb is not trusted
+[NotebookApp | INFO] Kernel interrupted: 9ed50010-fab1-4194-ab5d-64a12eee0f7f
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | WARNING] Notebook Malaria classification example.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | WARNING] Notebook Malaria classification example.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Classification.ipynb
+[NotebookApp | WARNING] Notebook Classification.ipynb is not trusted
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb
+[NotebookApp | INFO] Saving file at /Malaria classification example.ipynb

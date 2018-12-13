@@ -1,0 +1,17 @@
+.DS_Store
+_site
+.sass-cache
+~$*
+*.asv
+*~
+*#
+*.pyc
+.#*
+*.slides.md
+*.notes.md
+*.bak
+_*/*.ipynb
+_*/*.slides.html
+_*/*.notes.html
+*.ipynb.md
+_*/*.notes.pdf

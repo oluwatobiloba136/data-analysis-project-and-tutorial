@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Neil D. Lawrence">
+  <meta name="dcterms.date" content="2017-03-16">
+  <title>The Rise of the Algorithm</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <link rel="stylesheet" href="talks.css"/>
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">The Rise of the Algorithm</h1>
+  <p class="author">Neil D. Lawrence</p>
+  <p class="date">2017-03-16</p>
+</section>
+
+<section class="slide level2">
+
+<h3 id="the-guardian-changing-media-summit">The Guardian Changing Media Summit</h3>
+<h3 id="section">2017-03-16</h3>
+<h3 id="neil-d.-lawrence">Neil D. Lawrence</h3>
+<h3 id="amazon-and-university-of-sheffield">Amazon and University of Sheffield</h3>
+<p><code>@lawrennd</code> <a href="http://inverseprobability.com">inverseprobability.com</a> <!--  pandoc -s -S -c talks.css -t revealjs --mathjax="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" -o 2017-03-16-rise-of-the-algorithm.slides.html 2017-03-16-rise-of-the-algorithm.md
+--></p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><img src="./diagrams/alphagonature.jpg" align="center" width="50%" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="section-2" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<table width="100%" border="0" rules="none">
+<tr>
+<td style="text-align: center; vertical-align:middle;" width="50%">
+<img src="./diagrams/IBM_Blue_Gene_P_supercomputer.jpg" width="70%"
+style="background:none; border:none; box-shadow:none; text-align: center; vertical-align:middle;">
+</td>
+<td style="text-align: center; vertical-align:middle;" width="50%">
+<table style="border: none; rules: none">
+<tr>
+<td style="text-align: center; vertical-align:middle;">
+~10 gigaflops
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align:middle;">
+~1 gigbit/s
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align:middle;" width="50%">
+<img src="./diagrams/ClaudeShannon_MFO3807.jpg" width="50%"
+style="background:none; border:none; box-shadow:none; text-align: center; vertical-align:middle;">
+</td>
+<td style="text-align: center; vertical-align:middle;">
+<table border="0">
+<tr>
+<td style="text-align: center; vertical-align:middle;">
+~ 1000 teraflops?
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align:middle;">
+~100 bits/s?
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</section>
+<section id="section-3" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<table width="100%" border="0" rules="none">
+<tr>
+<td style="text-align: center; vertical-align:middle;" width="50%">
+<img src="./diagrams/IBM_Blue_Gene_P_supercomputer.jpg" width="70%"
+style="background:none; border:none; box-shadow:none; text-align: center; vertical-align:middle;">
+</td>
+<td style="text-align: center; vertical-align:middle;" width="50%">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align:middle;" width="50%">
+<img src="./diagrams/ClaudeShannon_MFO3807.jpg" width="50%"
+style="background:none; border:none; box-shadow:none; text-align: center; vertical-align:middle;">
+</td>
+<td style="text-align: center; vertical-align:middle;">
+~ 10<sup>13</sup>
+</td>
+</tr>
+</table>
+</section>
+<section id="section-4" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/640px-Marcel_Renault_1903.jpg" align="center" width="70%" style="background:none; border:none; box-shadow:none;"></p>
+</section>
+<section id="section-5" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/Caleb_McDuff_WIX_Silence_Racing_livery.jpg" align="center" width="70%" style="background:none; border:none;
+box-shadow:none;"></p>
+</section>
+<section id="section-6" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/George-peabody-library.jpg" align="center" width="70%" style="background:none; border:none;
+box-shadow:none;"></p>
+</section>
+<section id="section-7" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/Hilbert_InfoGrowth_neg.svg">
+</object>
+</section>
+<section id="section-8" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/20160609_132315.jpg" align="center" width="70%" style="background:none; border:none;box-shadow:none;" class="rotateimg90"></p>
+</section>
+<section id="section-9" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/20160609_132338.jpg" align="center" width="70%" style="background:none; border:none;box-shadow:none;" class="rotateimg90"></p>
+</section>
+<section id="section-10" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/rapid-diagnosis-and-consultation-save-lives.png" align="center" width="70%" style="background:none; border:none;
+box-shadow:none;"></p>
+</section>
+<section id="section-11" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/data-science-information-flow_neg003.svg ">
+</object>
+</section>
+<section id="section-12" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/Elephantboyposter.jpg" align="center" width="50%" style="background:none; border:none;
+box-shadow:none;"></p>
+</section>
+<section id="section-13" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/Hodder-stoughton-1918-the-new-revelation.jpg" align="center" width="50%" style="background:none; border:none;
+box-shadow:none;"></p>
+</section>
+<section id="section-14" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p style="text-align:center;font-size: 0.5em;">
+Outline of the DeepFace architecture. A front-end of a single convolution-pooling-convolution filtering on the rectified input, followed by three locally-connected layers and two fully-connected layers. Color illustrates feature maps produced at each layer. The net includes more than 120 million parameters, where more than 95% come from the local and fully connected layers.
+</p>
+<p><img src="./diagrams/deepface_neg.png" align="center" width="70%" style="background:none; border:none;
+box-shadow:none;"></p>
+<p style="text-align:right; font-size: 0.5em;">
+Source: DeepFace
+</p>
+</section>
+<section id="section-15" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p style="text-align:center;">
+<span class="math inline">\(g(\mathbf{x})\)</span>
+</p>
+<img src="./diagrams/deepface_neg.png" align="center" width="70%" style="background:none; border:none;
+box-shadow:none;">
+<p style="text-align:center;font-size:0.7em">
+<span class="math inline">\(f_{1}(\cdot)\)</span>      <span class="math inline">\(f_{2}(\cdot)\)</span>         <span class="math inline">\(f_3(\cdot)\)</span>        <span class="math inline">\(f_4(\cdot)\)</span>  <span class="math inline">\(f_5(\cdot)\)</span>    <span class="math inline">\(f_6(\cdot)\)</span>  <span class="math inline">\(f_7(\cdot)\)</span>   <span class="math inline">\(f_8(\cdot)\)</span>  <span class="math inline">\(f_9(\cdot)\)</span>  <span class="math inline">\(f_{10}(\cdot)\)</span>
+</p>
+<p style="text-align:center;">
+<span class="math display">\[g(\mathbf{x}) = f_{10}\left(f_{9}\left(f_{8}\left(f_{7}\left(f_{6}\left(f_{5}\left(f_{4}\left(f_{3}\left(f_{2}\left(f_{1}\left(\mathbf{x}\right)\right)\right)\right)\right)\right)\right)\right)\right)\right)\]</span>
+</p>
+</section>
+<section id="section-16" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<table width="100%">
+<tr>
+<td width="10%" style="text-align:center;
+vertical-align:middle">
+<span class="math display">\[f_1(\mathbf{x})\]</span> <span class="math display">\[f_2(\cdot)\]</span> <span class="math display">\[f_3(\cdot)\]</span>
+</td>
+<td style="text-align:center; vertical-align:middle">
+<object type="image/svg+xml" data="./diagrams/pinball-initial.svg">
+</object>
+</td>
+</tr>
+</table>
+</section>
+<section id="section-17" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<table width="100%">
+<tr>
+<td width="10%" style="text-align:center;
+vertical-align:middle">
+<span class="math display">\[f_1(\mathbf{x})\]</span> <span class="math display">\[f_2(\cdot)\]</span> <span class="math display">\[f_3(\cdot)\]</span>
+</td>
+<td style="text-align:center; vertical-align:middle">
+<object type="image/svg+xml" data="./diagrams/pinball-final.svg">
+</object>
+</td>
+</tr>
+</table>
+</section>
+<section id="section-18" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/16281468370_ea3702e83f_k.jpg" align="center" width="70%" style="background:none; border:none;
+box-shadow:none;"></p>
+</section>
+<section id="section-19" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/The_hindoo_earth.jpg" align="center" width="70%" style="background:none; border:none;
+box-shadow:none;"></p>
+</section>
+<section id="section-20" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><img src="./diagrams/Steen_Doctor_and_His_Patient.jpg" align="center" width="40%" style="background:none; border:none;
+box-shadow:none;"> <img src="./diagrams/Palazzo_San_Georgio_Genova_W.jpg" align="center" width="40%" style="background:none; border:none;
+box-shadow:none;"></p>
+</section>
+<section id="section-21" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/anne-bob-conversation000.svg">
+</object>
+</section>
+<section id="section-22" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/anne-bob-conversation001.svg">
+</object>
+</section>
+<section id="section-23" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/anne-bob-conversation002.svg">
+</object>
+</section>
+<section id="section-24" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/anne-bob-conversation003.svg">
+</object>
+</section>
+<section id="section-25" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/anne-bob-conversation004.svg">
+</object>
+</section>
+<section id="section-26" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/anne-bob-conversation005.svg">
+</object>
+</section>
+<section id="section-27" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/anne-bob-conversation006.svg">
+</object>
+</section>
+<section id="section-28" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<object type="image/svg+xml" data="./diagrams/anne-bob-conversation007.svg">
+</object>
+</section>
+<section id="section-29" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><a href="https://pixabay.com/en/rothenburg-of-the-deaf-1624164/"><img src="./diagrams/rothenburg-of-the-deaf-1624164_1920.jpg" align="center" width="70%" style="background:none; border:none;box-shadow:none;"></a></p>
+</section>
+<section id="section-30" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><a href="https://commons.wikimedia.org/wiki/File:Medievalplowingwoodcut.jpg"><img src="./diagrams/Medievalplowingwoodcut.jpg" align="center" width="90%" style="background:none; border:none;box-shadow:none;"></a></p>
+</section>
+<section id="section-31" class="slide level2 slide:" data-transition="none">
+<h2></h2>
+<p><a href="https://pixabay.com/en/elephant-watering-hole-safari-1065632/"><img src="./diagrams/elephant-1065632_1920.jpg" align="center" width="70%" style="background:none; border:none;box-shadow:none;"></a></p>
+</section>
+<section id="thanks" class="slide level2">
+<h2>Thanks!</h2>
+<p style="text-align:center;">
+<span class="citation" data-cites="lawrennd">@lawrennd</span>
+</p>
+<p style="text-align:center;">
+blog: <a href="http://inverseprobability.com/blog.html">http://inverseprobability.com</a>
+</p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

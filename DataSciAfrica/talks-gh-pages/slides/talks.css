@@ -1,0 +1,53 @@
+.mySlides { display: none;
+}
+
+.reveal h1 { font-size: 1.6em;
+	     text-transform: none;
+}
+.reveal h2 { font-size: 1.2em;
+	     text-transform: none;
+}
+.reveal h3 { font-size: 1em;
+	     text-transform: none;
+}
+.reveal h3 { font-size: 1em;
+	     text-transform: none;
+}
+
+.reveal p { text-align: left;
+}
+.reveal li { text-align: left;
+}
+
+.reveal math_display { font-size: 2.5em !important;
+}
+
+.reveal table {
+    border:none;
+    td{
+	border:none;
+    }
+}
+
+.rotateimg90 {
+  -webkit-transform:rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.svgplot {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+    type: "image/svg+xml";
+}
+
+.svgplot_normal {
+    type: "image/svg+xml";
+}
+
+.negate {
+    -webkit-filter:invert(1);
+    filter:invert;
+}
