@@ -1,0 +1,2937 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{loan\_prediction1}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsubsection{Project Objective}\label{project-objective}
+
+To automate the loan eligibility process (real time) based on customer
+detail provided while filling online application form. These details are
+Gender, Marital Status, Education, Number of Dependents, Income, Loan
+Amount, Credit History and others. To automate this process, they have
+given a problem to identify the customers segments, those are eligible
+for loan amount so that they can specifically target these customers.
+
+\textbf{The aim of this project is to predict whether a loan will be
+approved or not}
+
+    \subsubsection{Background Information}\label{background-information}
+
+Loan prediction is a very common real-life problem that each retail bank
+faces atleast once in its lifetime. If done correctly, it can save a lot
+of man hours at the end of a retail bank.
+
+    It is a classification problem where we have to predict whether a loan
+would be approved or not. In a classification problem, we have to
+predict discrete values based on a given set of independent variable(s).
+
+    \subsubsection{Hypthosis generation}\label{hypthosis-generation}
+
+Below are some of the factors which I think can affect the Loan Approval
+(dependent variable for this loan prediction problem):
+
+\begin{quote}
+\textbf{Salary}: Applicants with high income should have more chances of
+loan approval.
+\end{quote}
+
+\begin{quote}
+\textbf{Previous history}: Applicants who have repayed their previous
+debts should have higher chances of loan approval.
+\end{quote}
+
+\begin{quote}
+\textbf{Loan amount}: Loan approval should also depend on the loan
+amount. If the loan amount is less, chances of loan approval should be
+high.
+\end{quote}
+
+\begin{quote}
+\textbf{Loan term}: Loan for less time period and less amount should
+have higher chances of approval.
+\end{quote}
+
+\begin{quote}
+\textbf{Equated Monthly Installment (EMI)}: Lesser the amount to be paid
+monthly to repay the loan, higher the chances of loan approval.
+\end{quote}
+
+    \subsubsection{The sample Dataset}\label{the-sample-dataset}
+
+\begin{itemize}
+\item
+  \textbf{Train file} will be used for training the model, i.e. our
+  model will learn from this file. It contains all the independent
+  variables and the target variable.
+\item
+  \textbf{Test file} contains all the independent variables, but not the
+  target variable. I will apply the model to predict the target variable
+  for the test data.
+\end{itemize}
+
+    \subsubsection{Data Dictionary}\label{data-dictionary}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}147}]:} \PY{c+c1}{\PYZsh{} Importing required Packages}
+          \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}148}]:} \PY{k+kn}{import} \PY{n+nn}{warnings}
+          \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ignore}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}149}]:} \PY{c+c1}{\PYZsh{} Read Train}
+          \PY{n}{train}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{train\PYZus{}u6lujuX\PYZus{}CVtuZ9i.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}150}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The train dataset has }\PY{l+s+si}{\PYZob{}train.shape[0]\PYZcb{}}\PY{l+s+s1}{ observations and }\PY{l+s+si}{\PYZob{}train.shape[1]\PYZcb{}}\PY{l+s+s1}{ features}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The train dataset has 614 observations and 13 features
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}151}]:} \PY{c+c1}{\PYZsh{} Read Test}
+          \PY{n}{test}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{test\PYZus{}Y3wMUE5\PYZus{}7gLdaTN.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}152}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The train dataset has }\PY{l+s+si}{\PYZob{}test.shape[0]\PYZcb{}}\PY{l+s+s1}{ observations and }\PY{l+s+si}{\PYZob{}test.shape[1]\PYZcb{}}\PY{l+s+s1}{ features}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The target feature is excluded}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The train dataset has 367 observations and 12 features
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}152}]:} 'The target feature is excluded'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}153}]:} \PY{c+c1}{\PYZsh{} first five observation for train}
+          \PY{n}{train}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}153}]:}     Loan\_ID Gender Married Dependents     Education Self\_Employed  \textbackslash{}
+          0  LP001002   Male      No          0      Graduate            No   
+          1  LP001003   Male     Yes          1      Graduate            No   
+          2  LP001005   Male     Yes          0      Graduate           Yes   
+          3  LP001006   Male     Yes          0  Not Graduate            No   
+          4  LP001008   Male      No          0      Graduate            No   
+          
+             ApplicantIncome  CoapplicantIncome  LoanAmount  Loan\_Amount\_Term  \textbackslash{}
+          0             5849                0.0         NaN             360.0   
+          1             4583             1508.0       128.0             360.0   
+          2             3000                0.0        66.0             360.0   
+          3             2583             2358.0       120.0             360.0   
+          4             6000                0.0       141.0             360.0   
+          
+             Credit\_History Property\_Area Loan\_Status  
+          0             1.0         Urban           Y  
+          1             1.0         Rural           N  
+          2             1.0         Urban           Y  
+          3             1.0         Urban           Y  
+          4             1.0         Urban           Y  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}154}]:} \PY{c+c1}{\PYZsh{} first five observation for train}
+          \PY{n}{test}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}154}]:}     Loan\_ID Gender Married Dependents     Education Self\_Employed  \textbackslash{}
+          0  LP001015   Male     Yes          0      Graduate            No   
+          1  LP001022   Male     Yes          1      Graduate            No   
+          2  LP001031   Male     Yes          2      Graduate            No   
+          3  LP001035   Male     Yes          2      Graduate            No   
+          4  LP001051   Male      No          0  Not Graduate            No   
+          
+             ApplicantIncome  CoapplicantIncome  LoanAmount  Loan\_Amount\_Term  \textbackslash{}
+          0             5720                  0       110.0             360.0   
+          1             3076               1500       126.0             360.0   
+          2             5000               1800       208.0             360.0   
+          3             2340               2546       100.0             360.0   
+          4             3276                  0        78.0             360.0   
+          
+             Credit\_History Property\_Area  
+          0             1.0         Urban  
+          1             1.0         Urban  
+          2             1.0         Urban  
+          3             NaN         Urban  
+          4             1.0         Urban  
+\end{Verbatim}
+            
+    \texttt{Fractional\ sample\ of\ the\ dataset\ at\ the\ different\ point.\ This\ select\ a\ random\ sample\ every\ time\ the\ code\ is\ run.\ Its\ essence\ is\ to\ obtain\ a\ more\ specific\ overview\ of\ each\ features.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}155}]:}  \PY{c+c1}{\PYZsh{} obtain fractional sample of the dataset at the diff. point}
+          \PY{n}{train}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n}{frac}\PY{o}{=}\PY{l+m+mf}{0.1}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}155}]:}       Loan\_ID  Gender Married Dependents     Education Self\_Employed  \textbackslash{}
+          252  LP001841    Male      No          0  Not Graduate           Yes   
+          282  LP001915    Male     Yes          2      Graduate            No   
+          175  LP001606    Male     Yes          0      Graduate            No   
+          80   LP001265  Female      No          0      Graduate            No   
+          590  LP002928    Male     Yes          0      Graduate            No   
+          546  LP002768    Male      No          0  Not Graduate            No   
+          480  LP002534  Female      No          0  Not Graduate            No   
+          96   LP001327  Female     Yes          0      Graduate            No   
+          378  LP002224    Male      No          0      Graduate            No   
+          589  LP002926    Male     Yes          2      Graduate           Yes   
+          476  LP002529    Male     Yes          2      Graduate            No   
+          334  LP002103     NaN     Yes          1      Graduate           Yes   
+          558  LP002798    Male     Yes          0      Graduate            No   
+          464  LP002493    Male      No          0      Graduate            No   
+          77   LP001259    Male     Yes          1      Graduate           Yes   
+          598  LP002945    Male     Yes          0      Graduate           Yes   
+          310  LP002002  Female      No          0      Graduate            No   
+          58   LP001198    Male     Yes          1      Graduate            No   
+          561  LP002813  Female     Yes          1      Graduate           Yes   
+          434  LP002390    Male      No          0      Graduate            No   
+          253  LP001843    Male     Yes          1  Not Graduate            No   
+          399  LP002287  Female      No          0      Graduate            No   
+          404  LP002301  Female      No          0      Graduate           Yes   
+          401  LP002296    Male      No          0  Not Graduate            No   
+          498  LP002600    Male     Yes          1      Graduate           Yes   
+          428  LP002369    Male     Yes          0      Graduate            No   
+          524  LP002697    Male      No          0      Graduate            No   
+          432  LP002386    Male      No          0      Graduate           NaN   
+          199  LP001673    Male      No          0      Graduate           Yes   
+          0    LP001002    Male      No          0      Graduate            No   
+          ..        {\ldots}     {\ldots}     {\ldots}        {\ldots}           {\ldots}           {\ldots}   
+          544  LP002757  Female     Yes          0  Not Graduate            No   
+          483  LP002541    Male     Yes          0      Graduate            No   
+          136  LP001489  Female     Yes          0      Graduate            No   
+          145  LP001514  Female     Yes          0      Graduate            No   
+          112  LP001391    Male     Yes          0  Not Graduate            No   
+          335  LP002106    Male     Yes        NaN      Graduate           Yes   
+          176  LP001608    Male     Yes          2      Graduate            No   
+          220  LP001736    Male     Yes          0      Graduate            No   
+          144  LP001508    Male     Yes          2      Graduate            No   
+          529  LP002716    Male      No          0  Not Graduate            No   
+          462  LP002487    Male     Yes          0      Graduate            No   
+          370  LP002194  Female      No          0      Graduate           Yes   
+          207  LP001698    Male      No          0  Not Graduate            No   
+          250  LP001835    Male     Yes          0  Not Graduate            No   
+          564  LP002832    Male     Yes          2      Graduate            No   
+          140  LP001497    Male     Yes          2      Graduate            No   
+          509  LP002634  Female      No          1      Graduate            No   
+          347  LP002131    Male     Yes          2  Not Graduate            No   
+          122  LP001431  Female      No          0      Graduate            No   
+          27   LP001073    Male     Yes          2  Not Graduate            No   
+          543  LP002755    Male     Yes          1  Not Graduate            No   
+          235  LP001784    Male     Yes          1      Graduate            No   
+          111  LP001387  Female     Yes          0      Graduate           NaN   
+          583  LP002898    Male     Yes          1      Graduate            No   
+          506  LP002624    Male     Yes          0      Graduate            No   
+          418  LP002345    Male     Yes          0      Graduate            No   
+          605  LP002960    Male     Yes          0  Not Graduate            No   
+          256  LP001849    Male      No          0  Not Graduate            No   
+          602  LP002953    Male     Yes         3+      Graduate            No   
+          295  LP001949    Male     Yes         3+      Graduate           NaN   
+          
+               ApplicantIncome  CoapplicantIncome  LoanAmount  Loan\_Amount\_Term  \textbackslash{}
+          252             2583        2167.000000       104.0             360.0   
+          282             2301         985.799988        78.0             180.0   
+          175             3497        1964.000000       116.0             360.0   
+          80              3846           0.000000       111.0             360.0   
+          590             3000        3416.000000        56.0             180.0   
+          546             3358           0.000000        80.0              36.0   
+          480             4350           0.000000       154.0             360.0   
+          96              2484        2302.000000       137.0             360.0   
+          378             3069           0.000000        71.0             480.0   
+          589             2726           0.000000       106.0             360.0   
+          476             6700        1750.000000       230.0             300.0   
+          334             9833        1833.000000       182.0             180.0   
+          558             3887        2669.000000       162.0             360.0   
+          464             4166           0.000000        98.0             360.0   
+          77              1000        3022.000000       110.0             360.0   
+          598             9963           0.000000       180.0             360.0   
+          310             2917           0.000000        84.0             360.0   
+          58              8080        2250.000000       180.0             360.0   
+          561            19484           0.000000       600.0             360.0   
+          434             3750           0.000000       100.0             360.0   
+          253             2661        7101.000000       279.0             180.0   
+          399             1500        1800.000000       103.0             360.0   
+          404             7441           0.000000       194.0             360.0   
+          401             2755           0.000000        65.0             300.0   
+          498             2895           0.000000        95.0             360.0   
+          428             2920          16.120001        87.0             360.0   
+          524             4680        2087.000000         NaN             360.0   
+          432            12876           0.000000       405.0             360.0   
+          199            11000           0.000000        83.0             360.0   
+          0               5849           0.000000         NaN             360.0   
+          ..               {\ldots}                {\ldots}         {\ldots}               {\ldots}   
+          544             3017         663.000000       102.0             360.0   
+          483            10833           0.000000       234.0             360.0   
+          136             4583           0.000000        84.0             360.0   
+          145             2330        4486.000000       100.0             360.0   
+          112             3572        4114.000000       152.0               NaN   
+          335             5503        4490.000000        70.0               NaN   
+          176             2045        1619.000000       101.0             360.0   
+          220             2221           0.000000        60.0             360.0   
+          144            11757           0.000000       187.0             180.0   
+          529             6783           0.000000       130.0             360.0   
+          462             3015        2188.000000       153.0             360.0   
+          370            15759           0.000000        55.0             360.0   
+          207             3975        2531.000000        55.0             360.0   
+          250             1668        3890.000000       201.0             360.0   
+          564             8799           0.000000       258.0             360.0   
+          140             5042        2083.000000       185.0             360.0   
+          509            13262           0.000000        40.0             360.0   
+          347             3083        2168.000000       126.0             360.0   
+          122             2137        8980.000000       137.0             360.0   
+          27              4226        1040.000000       110.0             360.0   
+          543             2239        2524.000000       128.0             360.0   
+          235             5500        1260.000000       170.0             360.0   
+          111             2929        2333.000000       139.0             360.0   
+          583             1880           0.000000        61.0             360.0   
+          506            20833        6667.000000       480.0             360.0   
+          418             1025        2773.000000       112.0             360.0   
+          605             2400        3800.000000         NaN             180.0   
+          256             6045           0.000000       115.0             360.0   
+          602             5703           0.000000       128.0             360.0   
+          295             4416        1250.000000       110.0             360.0   
+          
+               Credit\_History Property\_Area Loan\_Status  
+          252             1.0         Rural           Y  
+          282             1.0         Urban           Y  
+          175             1.0         Rural           Y  
+          80              1.0     Semiurban           Y  
+          590             1.0     Semiurban           Y  
+          546             1.0     Semiurban           N  
+          480             1.0         Rural           Y  
+          96              1.0     Semiurban           Y  
+          378             1.0         Urban           N  
+          589             0.0     Semiurban           N  
+          476             1.0     Semiurban           Y  
+          334             1.0         Urban           Y  
+          558             1.0     Semiurban           Y  
+          464             0.0     Semiurban           N  
+          77              1.0         Urban           N  
+          598             1.0         Rural           Y  
+          310             1.0     Semiurban           Y  
+          58              1.0         Urban           Y  
+          561             1.0     Semiurban           Y  
+          434             1.0         Urban           Y  
+          253             1.0     Semiurban           Y  
+          399             0.0     Semiurban           N  
+          404             1.0         Rural           N  
+          401             1.0         Rural           N  
+          498             1.0     Semiurban           Y  
+          428             1.0         Rural           Y  
+          524             1.0     Semiurban           N  
+          432             1.0     Semiurban           Y  
+          199             1.0         Urban           N  
+          0               1.0         Urban           Y  
+          ..              {\ldots}           {\ldots}         {\ldots}  
+          544             NaN     Semiurban           Y  
+          483             1.0     Semiurban           Y  
+          136             1.0         Rural           N  
+          145             1.0     Semiurban           Y  
+          112             0.0         Rural           N  
+          335             1.0     Semiurban           Y  
+          176             1.0         Rural           Y  
+          220             0.0         Urban           N  
+          144             1.0         Urban           Y  
+          529             1.0     Semiurban           Y  
+          462             1.0         Rural           Y  
+          370             1.0     Semiurban           Y  
+          207             1.0         Rural           Y  
+          250             0.0     Semiurban           N  
+          564             0.0         Urban           N  
+          140             1.0         Rural           N  
+          509             1.0         Urban           Y  
+          347             1.0         Urban           Y  
+          122             0.0     Semiurban           Y  
+          27              1.0         Urban           Y  
+          543             1.0         Urban           Y  
+          235             1.0         Rural           Y  
+          111             1.0     Semiurban           Y  
+          583             NaN         Rural           N  
+          506             NaN         Urban           Y  
+          418             1.0         Rural           Y  
+          605             1.0         Urban           N  
+          256             0.0         Rural           N  
+          602             1.0         Urban           Y  
+          295             1.0         Urban           Y  
+          
+          [61 rows x 13 columns]
+\end{Verbatim}
+            
+    \emph{A series of data showing the value counts of
+\texttt{Coapplicant\ Income}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}156}]:} \PY{c+c1}{\PYZsh{} obtain the value of the categorical type that has the highest frequency}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.0        273
+1666.0       5
+2083.0       5
+2500.0       5
+1750.0       3
+1459.0       3
+2333.0       3
+1800.0       3
+1625.0       3
+2250.0       3
+5625.0       3
+2451.0       2
+1640.0       2
+2917.0       2
+1560.0       2
+20000.0      2
+1717.0       2
+1950.0       2
+1843.0       2
+2569.0       2
+3750.0       2
+4167.0       2
+3500.0       2
+2925.0       2
+1300.0       2
+1430.0       2
+754.0        2
+3167.0       2
+1667.0       2
+4416.0       2
+          {\ldots} 
+1881.0       1
+1041.0       1
+3583.0       1
+3013.0       1
+7250.0       1
+3300.0       1
+1302.0       1
+1287.0       1
+2340.0       1
+1710.0       1
+2330.0       1
+4648.0       1
+3447.0       1
+1774.0       1
+3796.0       1
+1425.0       1
+5701.0       1
+2079.0       1
+3033.0       1
+5302.0       1
+1131.0       1
+7101.0       1
+5500.0       1
+1779.0       1
+1863.0       1
+7166.0       1
+2138.0       1
+2166.0       1
+3541.0       1
+3021.0       1
+Name: CoapplicantIncome, Length: 287, dtype: int64
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}157}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{It was observed that }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{train[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{].value\PYZus{}counts().max()\PYZcb{} loan obervations have }
+          \PY{l+s+s1}{      }\PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{train[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{].value\PYZus{}counts().idxmax()\PYZcb{} coapplicantIncome}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{)}
+          
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{This can implies that those loan requests with 0.0 coapplicant income involved only one person}
+          \PY{l+s+s1}{OR the coapplicant has no income value OR he/she is unemployed}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+It was observed that 273 loan obervations have 
+      0.0 coapplicantIncome
+
+This can implies that those loan requests with 0.0 coapplicant income involved only one person
+OR the coapplicant has no income value OR he/she is unemployed
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}158}]:} \PY{c+c1}{\PYZsh{} Copy of original data so that the original is retained even after making changes}
+          \PY{n}{train\PYZus{}original}\PY{o}{=}\PY{n}{train}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+          \PY{n}{test\PYZus{}original}\PY{o}{=}\PY{n}{test}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \textbf{\emph{Features in the train dataset}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}159}]:} \PY{c+c1}{\PYZsh{} Features in the dataset}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{to\PYZus{}frame}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                    0
+0             Loan\_ID
+1              Gender
+2             Married
+3          Dependents
+4           Education
+5       Self\_Employed
+6     ApplicantIncome
+7   CoapplicantIncome
+8          LoanAmount
+9    Loan\_Amount\_Term
+10     Credit\_History
+11      Property\_Area
+12        Loan\_Status
+
+    \end{Verbatim}
+
+    \emph{A proof that loan status is missing in the test dataset}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}160}]:} \PY{c+c1}{\PYZsh{} loan status missing in the test dataset}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{test}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{to\PYZus{}frame}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+                    0
+0             Loan\_ID
+1              Gender
+2             Married
+3          Dependents
+4           Education
+5       Self\_Employed
+6     ApplicantIncome
+7   CoapplicantIncome
+8          LoanAmount
+9    Loan\_Amount\_Term
+10     Credit\_History
+11      Property\_Area
+
+    \end{Verbatim}
+
+    \textbf{Print data types for each variable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}161}]:} \PY{c+c1}{\PYZsh{} Print data types for each variable}
+          \PY{n}{train}\PY{o}{.}\PY{n}{dtypes}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}161}]:} Loan\_ID               object
+          Gender                object
+          Married               object
+          Dependents            object
+          Education             object
+          Self\_Employed         object
+          ApplicantIncome        int64
+          CoapplicantIncome    float64
+          LoanAmount           float64
+          Loan\_Amount\_Term     float64
+          Credit\_History       float64
+          Property\_Area         object
+          Loan\_Status           object
+          dtype: object
+\end{Verbatim}
+            
+    Data types for each features is okay by me and they can be use for
+further action
+
+The types of variables in the dataset are Categorical, ordinal and
+numerical.
+
+\begin{quote}
+\textbf{Categorical features}: These features have categories (Gender,
+Married, Self\_Employed, Credit\_History, Loan\_Status)
+\end{quote}
+
+\begin{quote}
+\textbf{Ordinal features}: Variables in categorical features having some
+order involved (Dependents, Education, Property\_Area)
+\end{quote}
+
+\begin{quote}
+\textbf{Numerical features}: These features have numerical values
+(ApplicantIncome, CoapplicantIncome, LoanAmount, Loan\_Amount\_Term)
+\end{quote}
+
+    \texttt{The\ number\ of\ unique\ observation\ we\ have\ in\ each\ feature}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}162}]:} \PY{c+c1}{\PYZsh{} get the number of unique observation}
+          \PY{n}{train}\PY{o}{.}\PY{n}{nunique}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}162}]:} Loan\_ID              614
+          Gender                 2
+          Married                2
+          Dependents             4
+          Education              2
+          Self\_Employed          2
+          ApplicantIncome      505
+          CoapplicantIncome    287
+          LoanAmount           203
+          Loan\_Amount\_Term      10
+          Credit\_History         2
+          Property\_Area          3
+          Loan\_Status            2
+          dtype: int64
+\end{Verbatim}
+            
+    \texttt{Table\ showing\ the\ different\ unique\ observations\ for\ Loan\_Amount\_Term}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}163}]:} \PY{c+c1}{\PYZsh{} check the different unique observation for Loan\PYZus{}Amount\PYZus{}Term}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Amount\PYZus{}Term}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Amount\PYZus{}Term}
+                            \PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{to\PYZus{}frame}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Amount\_Term
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}163}]:}        count
+          360.0    512
+          180.0     44
+          480.0     15
+          300.0     13
+          84.0       4
+          240.0      4
+          120.0      3
+          36.0       2
+          60.0       2
+          12.0       1
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}164}]:} \PY{c+c1}{\PYZsh{} get a dictionary of value counts to make a quick check for outlier, mistyped parameter, recurring values}
+          \PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{a}\PY{p}{:}\PY{n}{b}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)} \PY{k}{for} \PY{n}{a}\PY{p}{,}\PY{n}{b} \PY{o+ow}{in} \PY{n}{train}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}172}]:} \PY{c+c1}{\PYZsh{} visualize the Loan\PYZus{}Amount\PYZus{}Term to get glimpse of the picture}
+          \PY{n}{fig}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{style}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dark}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Amount\PYZus{}Term}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}
+                       \PY{n}{order}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Amount\PYZus{}Term}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribution of Loan\PYZus{}Amount\PYZus{}Term in months}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Amount\PYZus{}Term in months}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{14}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{ax}\PY{o}{.}\PY{n}{patches}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mf}{0.15}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_32_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{\emph{It was observed that majority of the loan request indicate
+360 months (30 years) paying back term implying that most of the loan
+request are long term loan.}}
+
+    \texttt{Table\ showing\ the\ different\ unique\ observations\ for\ Dependents}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}166}]:} \PY{c+c1}{\PYZsh{} check the different unique observation for Dependent}
+          \PY{n}{train}\PY{o}{.}\PY{n}{Dependents}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{to\PYZus{}frame}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}166}]:}     Dependents
+          0          345
+          1          102
+          2          101
+          3+          51
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}173}]:} \PY{c+c1}{\PYZsh{} visualize the Dependents to get glimpse of the picture}
+          \PY{n}{fig}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{style}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dark}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dependents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}
+                       \PY{n}{order}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dependents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribution of Dependents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{ax}\PY{o}{.}\PY{n}{patches}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mf}{0.20}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_36_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    Majority of the loan were requested from person with no or one dependent.
+
+This factor can be connected to the fact that less external issue are liable to affect paying-back ability i.e. they are likely to pay back.
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}179}]:} \PY{c+c1}{\PYZsh{} visualize the Credit\PYZus{}History to get glimpse of the picture}
+          \PY{n}{fig}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{style}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dark}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Credit\PYZus{}History}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}
+                       \PY{n}{order}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Credit\PYZus{}History}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribution of Credit History}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Applicants meet previous loan guidelines}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{ax}\PY{o}{.}\PY{n}{patches}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{/}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Credit\PYZus{}History}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
+                          \PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mf}{0.30}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_38_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{It\ was\ observed\ that\ 84\%\ of\ those\ requesting\ for\ loan\ have\ once\ met\ a\ previous\ loan\ guidelines\ i.e.\ have\ repaid\ their\ debts.}
+
+    \subsubsection{Other Categorical
+Variable}\label{other-categorical-variable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}181}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+          \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Married}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Self\PYZus{}Employed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{for} \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{221}\PY{p}{,}\PY{l+m+mi}{225}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}
+                           \PY{n}{order}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribution of }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+              \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+              \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{ax}\PY{o}{.}\PY{n}{patches}\PY{p}{:}
+                  \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{/}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
+                              \PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mf}{0.30}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_41_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}182}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+          \PY{n}{a} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Property\PYZus{}Area}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{for} \PY{n}{x}\PY{p}{,}\PY{n}{y} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{,}\PY{l+m+mi}{123}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}
+                           \PY{n}{order}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribution of }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+              \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+              \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{ax}\PY{o}{.}\PY{n}{patches}\PY{p}{:}
+                  \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{/}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{n}{a}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
+                              \PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mf}{0.30}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{The following inferences can be made from the above plots:}
+
+\begin{itemize}
+\item
+  \texttt{Most\ of\ the\ applicants\ don’t\ have\ any\ dependents.}
+\item
+  \texttt{Around\ 80\%\ of\ the\ applicants\ are\ Graduate.}
+\item
+  \texttt{Most\ of\ the\ applicants\ are\ from\ Semiurban\ area.}
+\end{itemize}
+
+    \textbf{Descriptive statistic of categorical features shown below}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}183}]:} \PY{n}{train}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{include}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{O}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}183}]:}          Loan\_ID Gender Married Dependents Education Self\_Employed  \textbackslash{}
+          count        614    601     611        599       614           582   
+          unique       614      2       2          4         2             2   
+          top     LP002422   Male     Yes          0  Graduate            No   
+          freq           1    489     398        345       480           500   
+          
+                 Property\_Area Loan\_Status  
+          count            614         614  
+          unique             3           2  
+          top        Semiurban           Y  
+          freq             233         422  
+\end{Verbatim}
+            
+    \texttt{From\ the\ above\ table,\ it\ was\ revealed\ that\ Gender,\ Married,\ Dependants,\ Self\_Employed\ have\ missing\ values.}
+
+    \textbf{\emph{Checking for missing values in categorical variables.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} check for missing values in categorical variables}
+         \PY{n}{train}\PY{o}{.}\PY{n}{select\PYZus{}dtypes}\PY{p}{(}\PY{n}{exclude}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{number}\PY{p}{)}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{n}{memory\PYZus{}usage}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{deep}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 614 entries, 0 to 613
+Data columns (total 8 columns):
+Loan\_ID          614 non-null object
+Gender           601 non-null object
+Married          611 non-null object
+Dependents       599 non-null object
+Education        614 non-null object
+Self\_Employed    582 non-null object
+Property\_Area    614 non-null object
+Loan\_Status      614 non-null object
+dtypes: object(8)
+memory usage: 332.5 KB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}186}]:} \PY{c+c1}{\PYZsh{} obtain column with missing values,their dtypes and frequency}
+          \PY{n}{num\PYZus{}of\PYZus{}missing\PYZus{}values}\PY{o}{=}\PY{n}{train}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{col\PYZus{}with\PYZus{}missing\PYZus{}values}\PY{o}{=}\PY{n}{num\PYZus{}of\PYZus{}missing\PYZus{}values}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{num\PYZus{}of\PYZus{}missing\PYZus{}values}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{column with missing values,their dtypes and frequency}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{p}{[}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}a\PYZcb{}}\PY{l+s+s1}{ : }\PY{l+s+si}{\PYZob{}train[a].dtypes\PYZcb{}}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZob{}num\PYZus{}of\PYZus{}missing\PYZus{}values[a]\PYZcb{}}\PY{l+s+s1}{\PYZsq{}} 
+           \PY{k}{for} \PY{n}{a} \PY{o+ow}{in} \PY{n}{col\PYZus{}with\PYZus{}missing\PYZus{}values}\PY{o}{.}\PY{n}{index}\PY{p}{]} 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+column with missing values,their dtypes and frequency
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}186}]:} ['Gender : object: 13',
+           'Married : object: 3',
+           'Dependents : object: 15',
+           'Self\_Employed : object: 32',
+           'LoanAmount : float64: 22',
+           'Loan\_Amount\_Term : float64: 14',
+           'Credit\_History : float64: 50']
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}187}]:} \PY{c+c1}{\PYZsh{} display it as a dataframe}
+          \PY{n}{col\PYZus{}with\PYZus{}missing\PYZus{}values}\PY{o}{=}\PY{n}{col\PYZus{}with\PYZus{}missing\PYZus{}values}\PY{o}{.}\PY{n}{to\PYZus{}frame}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{num\PYZus{}missing\PYZus{}val}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{col\PYZus{}with\PYZus{}missing\PYZus{}values}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}187}]:}                   num\_missing\_val
+          Gender                         13
+          Married                         3
+          Dependents                     15
+          Self\_Employed                  32
+          LoanAmount                     22
+          Loan\_Amount\_Term               14
+          Credit\_History                 50
+\end{Verbatim}
+            
+    \subsubsection{Bivariate Analysis of Categorical Independent variables
+and the target
+variable}\label{bivariate-analysis-of-categorical-independent-variables-and-the-target-variable}
+
+\textbf{Since the target variable is a categorical variable, and we
+interested to find the relationship between this response and other
+categorical varaiable (Categorical vs Catgorical)}
+
+\textbf{\emph{The question of interest will be how associated the two
+features are?}}
+
+\textbf{This finding can easily be obtained with a chart (mosaic chart)}
+
+    \subsubsection{Background Knowledge on finding the association between
+two categorical
+variables}\label{background-knowledge-on-finding-the-association-between-two-categorical-variables}
+
+\textbf{Stacked Column chart} is a useful graph to visualize the
+relationship between two categorical variables. It compares the
+percentage that each category from one variable contributes to a total
+across categories of the second variable.
+
+\textbf{The chi-square test} can be used to determine the association
+between categorical variables. It is based on the difference between the
+expected frequencies (e) and the observed frequencies (n) in one or more
+categories in the frequency table. The chi-square distribution returns a
+probability for the computed chi-square and the degree of freedom. A
+probability of zero shows a complete dependency between two categorical
+variables and a probability of one means that two categorical variables
+are completely independent. Tchouproff Contingency Coefficient measures
+the amount of dependency between two categorical variables.
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \subsubsection{Interpreting Chi square and more fact to know about
+it}\label{interpreting-chi-square-and-more-fact-to-know-about-it}
+
+A large value of the \textbf{Chi Square statistic} indicates a large
+deviation from what we would expect with no association.
+
+This test is invalid when the observed or expected frequencies in each
+category are too small. A \textbf{typical rule is that all of the
+observed and expected frequencies should be at least 5}.
+
+The default degrees of freedom, k-1, are for the case when no parameters
+of the distribution are estimated. If p parameters are estimated by
+efficient maximum likelihood then the correct degrees of freedom are
+k-1-p. If the parameters are estimated in a different way, then the dof
+can be between k-1-p and k-1. However, it is also possible that the
+asymptotic distribution is not a chisquare, in which case this test is
+not appropriate.
+
+\textbf{Chi square goodness of fit} tests whether the distribution of
+sample categorical data matches an expected distribution. For example,
+you could use a chi-squared goodness-of-fit test to check whether the
+race demographics of members at your church or school match that of the
+entire U.S. population or whether the computer browser preferences of
+your friends match those of Internet uses as a whole.
+
+When working with categorical data, the values themselves aren't of much
+use for statistical testing because categories like "male", "female,"
+and "other" have no mathematical meaning. Tests dealing with categorical
+variables are based on variable counts instead of the actual value of
+the variables themselves.
+
+\textbf{Chi-Squared Test of Independence}
+
+\emph{Independence} is a key concept in probability that describes a
+situation where knowing the value of one variable tells you nothing
+about the value of another. For instance, the month you were born
+probably doesn't tell you anything about which web browser you use, so
+we'd expect birth month and browser preference to be independent. On the
+other hand, your month of birth might be related to whether you excelled
+at sports in school, so month of birth and sports performance might not
+be independent.
+
+The \textbf{chi-squared test of independence tests whether two
+categorical variables are independent. The test of independence is
+commonly used to determine whether variables like education, political
+views and other preferences vary based on demographic factors like
+gender, race and religion}.
+
+\href{http://hamelg.blogspot.com/2015/11/python-for-data-analysis-part-25-chi.html}{Read
+more here}
+
+    \begin{quote}
+\textbf{Relationship of Gender vs Loan\_Status (how associated gender is
+to Loan\_Status)?}
+\end{quote}
+
+    \texttt{Table\ showing\ the\ proportion\ of\ Gender\ to\ Loan\_Status\ in\ \%}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} Table showing the proportion of Gender to Loan\PYZus{}Status in \PYZpc{} }
+         \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Gender}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{,}\PY{n}{normalize}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}29}]:} Loan\_Status         N         Y
+         Gender                         
+         Female       0.061564  0.124792
+         Male         0.249584  0.564060
+\end{Verbatim}
+            
+    \texttt{Table\ showing\ the\ actual\ proportion\ of\ Gender\ to\ Loan\_Status}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} print the cross tabulation of Loan\PYZus{}Status vs Gender}
+         \PY{n}{gender} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Gender}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{gender}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status    N    Y
+Gender               
+Female        37   75
+Male         150  339
+
+    \end{Verbatim}
+
+    \texttt{Table\ showing\ the\ percentage\ proportion\ of\ each\ Loan\ Status\ per\ Gender}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} obtain the percentage of each Loan\PYZus{}Status per Gender}
+         \PY{n}{gender}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{gender}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}31}]:} Loan\_Status         N         Y
+         Gender                         
+         Female       0.330357  0.669643
+         Male         0.306748  0.693252
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}188}]:} \PY{n}{sns}\PY{o}{.}\PY{n}{set\PYZus{}style}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dark}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{p}{(}\PY{n}{gender}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{gender}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between Gender and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gender}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}188}]:} <function matplotlib.pyplot.text>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_62_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{It\ can\ be\ inferred\ that\ the\ proportion\ of\ male\ and\ female\ applicants\ is\ more\ or\ less\ same\ for\ both\ approved\ and\ unapproved\ loans.}
+
+    \textbf{Test of Independence with chi square test of Independence}
+
+    \texttt{Expected\ Count\ table\ for\ \ gender\ in\ respect\ to\ Loan\ Status}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{} We can quickly get the expected counts for all cells in the table }
+         \PY{c+c1}{\PYZsh{} by taking the row totals and column totals of the table, }
+         \PY{c+c1}{\PYZsh{} performing an outer product on them with the np.outer() function and dividing by the number of observations:}
+         
+         \PY{n}{col\PYZus{}sum\PYZus{}gender}\PY{o}{=}\PY{n}{gender}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{row\PYZus{}sum\PYZus{}gender}\PY{o}{=}\PY{n}{gender}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{expected} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{outer}\PY{p}{(}\PY{n}{col\PYZus{}sum\PYZus{}gender}\PY{p}{,}\PY{n}{row\PYZus{}sum\PYZus{}gender}\PY{p}{)}\PY{o}{/}\PY{n}{col\PYZus{}sum\PYZus{}gender}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+         \PY{n}{expected} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expected}\PY{p}{)}
+         \PY{n}{expected}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{N}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{expected}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{expected}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}33}]:}                  N           Y
+         Female   34.848586   77.151414
+         Male    152.151414  336.848586
+\end{Verbatim}
+            
+    \emph{Expected counts table is designed to reflect what the sample data
+counts would be if the two variables were independent.}
+
+The statistical question becomes, \textbf{"Are the observed counts so
+different from the expected counts that we can conclude a relationship
+between the two variables?"}
+
+\emph{In this particular case they are no huge difference} \textbf{so we
+can initially/partially conclude the variable are independents (no
+association between them)}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}189}]:} \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{gender}\PY{o}{\PYZhy{}}\PY{n}{expected}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expected}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{chi\PYZus{}squared\PYZus{}stat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{chi\PYZus{}squared\PYZus{}stat}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+chi\_squared\_stat
+0.23697508750826923
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{as} \PY{n+nn}{stats}
+         \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                               \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+         \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+         
+         \PY{n}{p\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{chi\PYZus{}squared\PYZus{}stat}\PY{p}{,}  \PY{c+c1}{\PYZsh{} Find the p\PYZhy{}value}
+                                      \PY{n}{df}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{P value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{p\PYZus{}value}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Critical value
+3.8414588206941236
+P value
+0.6263994534115932
+
+    \end{Verbatim}
+
+    \subsubsection{The decision making
+approach}\label{the-decision-making-approach}
+
+We make our decision by either comparing the value of the test statistic
+to a critical value (rejection region approach), or by finding the
+probability of getting this test statistic value or one more extreme
+(p-value approach).
+
+    \textbf{We accept the null hypotheses because critical value of 3.84
+\textgreater{} 0.236 of chi squared statistic.}
+
+\emph{We have statistically significant evidence at a =0.05 to show that
+null hypotheses is true or that gender and Loan status are independent
+(i.e., they are not dependent or related), p \textless{} 0.005. }
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}190}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{gender}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}191}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 0.13962612116543877
+The P-value is 0.7086529816451106
+The degree of freedom is 1
+The expected count table 
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}191}]:} array([[ 34.84858569,  77.15141431],
+                 [152.15141431, 336.84858569]])
+\end{Verbatim}
+            
+    \emph{We don't have a significant result at 5\% significance level since
+the p-value (0.71) is greater than 0.05.}
+
+\textbf{We accept the null hypothesis that Loan\_Status of applicant and
+their gender on a loan eligibility process are independent. We conclude
+that they are independent, that there is no association between the two
+variables.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}192}]:} \PY{c+c1}{\PYZsh{} Married vs Loan\PYZus{}Status}
+          \PY{n}{married} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Married}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{married}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{married}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{married}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between Married and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Married}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status    N    Y
+Married              
+No            79  134
+Yes          113  285
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}192}]:} <function matplotlib.pyplot.text>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_75_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}193}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{married}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 4.475019348315097
+The P-value is 0.03439381301579988
+The degree of freedom is 1
+The expected count table 
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}193}]:} array([[ 66.93289689, 146.06710311],
+                 [125.06710311, 272.93289689]])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}194}]:} \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{expctd}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}194}]:}             0           1
+          0   66.932897  146.067103
+          1  125.067103  272.932897
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}195}]:} \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{married}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+          
+          \PY{n}{p\PYZus{}value} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{cdf}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{chi\PYZus{}squared\PYZus{}stat}\PY{p}{,}  \PY{c+c1}{\PYZsh{} Find the p\PYZhy{}value}
+                                       \PY{n}{df}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} print(\PYZdq{}P value\PYZdq{})}
+          \PY{c+c1}{\PYZsh{} print(p\PYZus{}value)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Critical value
+3.8414588206941236
+
+    \end{Verbatim}
+
+    It can be inferred that the Proportion of married applicants is higher
+for the approved loans.
+
+\textbf{Critical value of 3.84 \textless{} 4.41 of chi square statistic,
+We have a significant result at 5\% significance level since the p-value
+(0.03) is less than 0.05.}
+
+\texttt{We\ can\ conclude\ that\ Loan\ Status\ of\ an\ applicant\ is\ associated\ with\ their\ married\ status.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}196}]:} \PY{c+c1}{\PYZsh{} Dependents vs Loan\PYZus{}Status}
+          \PY{n}{dependents} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Dependents}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{dependents}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{dependents}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{dependents}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between Dependents and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dependents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status    N    Y
+Dependents           
+0            107  238
+1             36   66
+2             25   76
+3+            18   33
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}196}]:} <function matplotlib.pyplot.text>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_80_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}197}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{dependents}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 3.158339770698263
+The P-value is 0.3678506740863211
+The degree of freedom is 3
+The expected count table 
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}197}]:} array([[107.12854758, 237.87145242],
+                 [ 31.67278798,  70.32721202],
+                 [ 31.36227045,  69.63772955],
+                 [ 15.83639399,  35.16360601]])
+\end{Verbatim}
+            
+    Distribution of applicants with 1 or 3+ dependents is similar across
+both the categories of Loan\_Status.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}198}]:} \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{expctd}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{dependents}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{3}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} p\PYZus{}value = 1 \PYZhy{} stats.chi2.cdf(x=chi\PYZus{}squared\PYZus{}stat,  \PYZsh{} Find the p\PYZhy{}value}
+          \PY{c+c1}{\PYZsh{}                              df=3)}
+          \PY{c+c1}{\PYZsh{} print(\PYZdq{}P value\PYZdq{})}
+          \PY{c+c1}{\PYZsh{} print(p\PYZus{}value)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Critical value
+7.8147279032511765
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}199}]:} \PY{c+c1}{\PYZsh{} Education vs Loan\PYZus{}Status}
+          \PY{n}{education} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Education}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{education}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{education}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{education}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between Education and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status     N    Y
+Education             
+Graduate      140  340
+Not Graduate   52   82
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}199}]:} <function matplotlib.pyplot.text>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_84_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}200}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{education}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+          
+          \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{education}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 4.091490413303621
+The P-value is 0.04309962129357355
+The degree of freedom is 1
+The expected count table 
+           0          1
+0  150.09772  329.90228
+1   41.90228   92.09772
+Critical value
+3.8414588206941236
+
+    \end{Verbatim}
+
+    \textbf{Critical value of 3.84 \textless{} 4.09 of chi square statistic,
+We have a significant result at 5\% significance level since the p-value
+(0.04) is less than 0.05.}
+
+\texttt{We\ can\ conclude\ that\ Loan\ Status\ of\ an\ applicant\ is\ associated\ to\ their\ education\ level.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}201}]:} \PY{c+c1}{\PYZsh{} Self\PYZhy{}employment vs Loan\PYZus{}Status}
+          \PY{n}{self\PYZus{}employed} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Self\PYZus{}Employed}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{self\PYZus{}employed}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{self\PYZus{}employed}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{self\PYZus{}employed}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between Self\PYZhy{}employment and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Self\PYZhy{}employed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status      N    Y
+Self\_Employed          
+No             157  343
+Yes             26   56
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}201}]:} <function matplotlib.pyplot.text>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_87_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}202}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{self\PYZus{}employed}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+          
+          \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{self\PYZus{}employed}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 0.005292770110001114
+The P-value is 0.9420039242223718
+The degree of freedom is 1
+The expected count table 
+            0           1
+0  157.216495  342.783505
+1   25.783505   56.216495
+Critical value
+3.8414588206941236
+
+    \end{Verbatim}
+
+    \texttt{There\ is\ nothing\ significant\ we\ can\ infer\ from\ Self\_Employed\ vs\ Loan\_Status\ plot}
+
+\emph{Critical value \textgreater{} chi square statistic, p-value
+\textgreater{} 0.05 and nearly 1}
+
+\emph{Also No significance difference in the expected count table.}
+
+    \begin{quote}
+\textbf{Though Credit\_History dtypes is float64, it is more of a
+categorical variable because it has a unique value of 0 (credit history
+does not meets guidelines) and 1 (credit history does meets guideline)}
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}203}]:} \PY{c+c1}{\PYZsh{} credit\PYZus{}history vs Loan\PYZus{}Status}
+          \PY{n}{credit\PYZus{}history} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Credit\PYZus{}History}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{credit\PYZus{}history}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{credit\PYZus{}history}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{credit\PYZus{}history}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between Credit\PYZhy{}History and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Credit\PYZhy{}History}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status      N    Y
+Credit\_History         
+0.0             82    7
+1.0             97  378
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}203}]:} <function matplotlib.pyplot.text>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_91_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}204}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{credit\PYZus{}history}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+          
+          \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{credit\PYZus{}history}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 174.63729658142535
+The P-value is 7.184759548750746e-40
+The degree of freedom is 1
+The expected count table 
+            0           1
+0   28.246454   60.753546
+1  150.753546  324.246454
+Critical value
+3.8414588206941236
+
+    \end{Verbatim}
+
+    It seems people with credit history as 1 are more likely to get their
+loans approved.
+
+\textbf{Critical value of 3.84 is far less than 174.64 of chi square
+statistic, We have a significant result at 5\% significance level since
+the p-value is nearly 0.00 which shows a complete dependency between the
+two variables.}
+
+\emph{\texttt{We\ can\ conclude\ that\ Loan\ Status\ of\ an\ applicant\ is\ strongly\ associated\ to\ their\ credit\ history.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}205}]:} \PY{c+c1}{\PYZsh{} credit\PYZus{}history vs Loan\PYZus{}Status}
+          \PY{n}{property\PYZus{}area} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Property\PYZus{}Area}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{property\PYZus{}area}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{property\PYZus{}area}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{property\PYZus{}area}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between Property\PYZus{}Area and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Property\PYZus{}Area}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status     N    Y
+Property\_Area         
+Rural          69  110
+Semiurban      54  179
+Urban          69  133
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}205}]:} <function matplotlib.pyplot.text>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_94_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}206}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{property\PYZus{}area}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+          
+          \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{property\PYZus{}area}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 12.297623130485675
+The P-value is 0.0021360187811644937
+The degree of freedom is 2
+The expected count table 
+           0           1
+0  55.973941  123.026059
+1  72.859935  160.140065
+2  63.166124  138.833876
+Critical value
+5.99146454710798
+
+    \end{Verbatim}
+
+    \emph{It seems people living in semi urban area are more likely to get
+their loans approved.}
+
+\textbf{Critical value of 5.99 is less than 12.29 of chi square
+statistic, We have a significant result at 5\% significance level since
+the p-value is nearly 0.00 which shows a complete dependency between the
+two variables.}
+
+\emph{\texttt{We\ can\ conclude\ that\ Loan\ Status\ of\ an\ applicant\ is\ strongly\ associated\ to\ their\ property\ area\ and\ Proportion\ of\ loans\ getting\ approved\ in\ semiurban\ area\ is\ higher\ as\ compared\ to\ that\ in\ rural\ or\ urban\ areas.}}
+
+    \subsubsection{Bivariate analysis of Numerical Independent variable and
+the target
+variable}\label{bivariate-analysis-of-numerical-independent-variable-and-the-target-variable}
+
+    \texttt{Descriptive\ statistic\ of\ numerical\ variables}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}207}]:} \PY{c+c1}{\PYZsh{} obtain descriptive statistic of numerical variables}
+          \PY{n}{train}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{percentiles}\PY{o}{=}\PY{p}{[}\PY{o}{.}\PY{l+m+mi}{01}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{05}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{2}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{4}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{7}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{85}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{95}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{99}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}207}]:}        ApplicantIncome  CoapplicantIncome  LoanAmount  Loan\_Amount\_Term  \textbackslash{}
+          count       614.000000         614.000000  592.000000         600.00000   
+          mean       5403.459283        1621.245798  146.412162         342.00000   
+          std        6109.041673        2926.248369   85.587325          65.12041   
+          min         150.000000           0.000000    9.000000          12.00000   
+          1\%         1025.000000           0.000000   30.000000          84.00000   
+          5\%         1897.550000           0.000000   56.000000         180.00000   
+          10\%        2216.100000           0.000000   71.000000         294.00000   
+          20\%        2605.400000           0.000000   95.000000         360.00000   
+          40\%        3406.800000           0.000000  116.000000         360.00000   
+          50\%        3812.500000        1188.500000  128.000000         360.00000   
+          70\%        5185.600000        2083.000000  158.000000         360.00000   
+          85\%        7578.250000        3053.650000  192.000000         360.00000   
+          95\%       14583.000000        4997.400000  297.800000         360.00000   
+          99\%       32540.410000        8895.890000  496.360000         480.00000   
+          max       81000.000000       41667.000000  700.000000         480.00000   
+          
+                 Credit\_History  
+          count      564.000000  
+          mean         0.842199  
+          std          0.364878  
+          min          0.000000  
+          1\%           0.000000  
+          5\%           0.000000  
+          10\%          0.000000  
+          20\%          1.000000  
+          40\%          1.000000  
+          50\%          1.000000  
+          70\%          1.000000  
+          85\%          1.000000  
+          95\%          1.000000  
+          99\%          1.000000  
+          max          1.000000  
+\end{Verbatim}
+            
+    \subsubsection{Analyzing the Applicant
+income}\label{analyzing-the-applicant-income}
+
+\emph{We will try to find the mean income of people for which the loan
+has been approved} \textbf{VS} \emph{the mean income of people for which
+the loan has not been approved.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}208}]:} \PY{n}{ax}\PY{o}{=}\PY{n}{train}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{ax}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status
+N    5446.078125
+Y    5384.068720
+Name: ApplicantIncome, dtype: float64
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}210}]:} \PY{n}{fig}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{=}\PY{n}{train}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribution of mean income of approved applicants vs non\PYZhy{}approved applicants}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{ax}\PY{o}{.}\PY{n}{patches}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                          \PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mf}{0.10}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{50}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_102_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{We don't see any significant difference in the mean income of
+these two categories.}
+
+These can make us reject our null hypotheses which is
+\texttt{Applicants\ with\ high\ income\ should\ have\ more\ chances\ of\ loan\ approval.}
+
+This implies that
+\texttt{Applicant\ income\ has\ no\ association\ with\ his/her\ loan\ eligibilty}
+
+\textbf{However let dive more into it.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}211}]:} \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{import} \PY{n}{norm}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{style}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dark}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{distplot}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{ApplicantIncome}\PY{p}{,} \PY{n}{fit}\PY{o}{=}\PY{n}{norm}\PY{p}{,} \PY{n}{kde}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_104_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}212}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{distplot}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} train[\PYZsq{}ApplicantIncome\PYZsq{}].plot.box(figsize=(16,5))}
+          \PY{n}{a}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}\PY{n}{notch}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} a = sns.swarmplot( y=\PYZsq{}ApplicantIncome\PYZsq{}, data=train, color=\PYZdq{}.2\PYZdq{})}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_105_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{The above charts shows that the ApplicantIncome is not normally
+distributed.}
+
+\texttt{It\ can\ be\ inferred\ that\ most\ of\ the\ data\ in\ the\ distribution\ of\ applicant\ income\ is\ towards\ left\ which\ means\ it\ is\ not\ normally\ distributed.\ We\ will\ try\ to\ make\ it\ normal\ in\ later\ sections\ as\ algorithms\ works\ better\ if\ the\ data\ is\ normally\ distributed.}
+
+\texttt{The\ boxplot\ confirms\ the\ presence\ of\ a\ lot\ of\ outliers/extreme\ values.\ This\ can\ be\ attributed\ to\ the\ income\ disparity\ in\ the\ society.\ Part\ of\ this\ can\ be\ driven\ by\ the\ fact\ that\ we\ are\ looking\ at\ people\ with\ different\ education\ levels.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}213}]:} \PY{c+c1}{\PYZsh{} segregate Applicant Income by Education}
+          \PY{n}{a}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}\PY{n}{notch}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_107_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{We\ can\ see\ that\ there\ are\ a\ higher\ number\ of\ graduates\ with\ very\ high\ incomes,\ which\ are\ appearing\ to\ be\ the\ outliers}.
+
+\emph{So, let's make bins for the applicant income variable based on the
+values in it and analyze the corresponding loan status for each bin.}
+
+\texttt{We\ can\ decide\ the\ bins\ by\ looking\ into\ its\ descriptive\ statistic}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}214}]:} \PY{c+c1}{\PYZsh{} the describe statistic of ApplicantIncome to decide for the binning range}
+          \PY{n}{train}\PY{o}{.}\PY{n}{ApplicantIncome}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{percentiles}\PY{o}{=}\PY{p}{[}\PY{o}{.}\PY{l+m+mi}{01}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{05}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{25}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{4}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{75}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{85}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{95}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{99}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}214}]:} count      614.000000
+          mean      5403.459283
+          std       6109.041673
+          min        150.000000
+          1\%        1025.000000
+          5\%        1897.550000
+          10\%       2216.100000
+          25\%       2877.500000
+          40\%       3406.800000
+          50\%       3812.500000
+          75\%       5795.000000
+          85\%       7578.250000
+          95\%      14583.000000
+          99\%      32540.410000
+          max      81000.000000
+          Name: ApplicantIncome, dtype: float64
+\end{Verbatim}
+            
+    \texttt{I\ conclude\ choosing\ the\ following\ bins:}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Category & Income range\tabularnewline
+\midrule
+\endhead
+Low & 0-2500\tabularnewline
+Average & 2500-4000\tabularnewline
+High & 4000-6000\tabularnewline
+Very High & \textgreater{}6000\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}215}]:} \PY{n}{bins}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2500}\PY{p}{,}\PY{l+m+mi}{4000}\PY{p}{,}\PY{l+m+mi}{6000}\PY{p}{,}\PY{l+m+mi}{81000}\PY{p}{]}
+          \PY{n}{group}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Very high}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{cut}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{p}{,}\PY{n}{labels}\PY{o}{=}\PY{n}{group}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}217}]:} \PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{a}\PY{p}{:}\PY{n}{b}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)} \PY{k}{for} \PY{n}{a}\PY{p}{,}\PY{n}{b} \PY{o+ow}{in} \PY{n}{train}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
+          \PY{n}{fig}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{set}\PY{p}{(}\PY{n}{style}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{dark}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}
+                       \PY{n}{order}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribution of various categories of Applicant Income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{ax}\PY{o}{.}\PY{n}{patches}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{/}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
+                          \PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mf}{0.30}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_112_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}218}]:} \PY{n}{applicantIncome\PYZus{}bin} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{ApplicantIncome\PYZus{}bin}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{applicantIncome\PYZus{}bin}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{applicantIncome\PYZus{}bin}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{applicantIncome\PYZus{}bin}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{14}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between ApplicantIncome\PYZus{}bin and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status           N    Y
+ApplicantIncome\_bin         
+Low                  34   74
+Average              67  159
+High                 45   98
+Very high            46   91
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_113_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{It\ can\ \ now\ be\ inferred\ that\ Applicant\ income\ does\ not\ affect\ the\ chances\ of\ loan\ approval\ which\ contradicts\ our\ hypothesis\ in\ which\ we\ assumed\ that\ if\ the\ applicant\ income\ is\ high\ the\ chances\ of\ loan\ approval\ will\ also\ be\ high.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}219}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{applicantIncome\PYZus{}bin}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+          
+          \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{applicantIncome\PYZus{}bin}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{3}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 0.6213577939863809
+The P-value is 0.8915260581064367
+The degree of freedom is 3
+The expected count table 
+           0           1
+0  33.771987   74.228013
+1  70.671010  155.328990
+2  44.716612   98.283388
+3  42.840391   94.159609
+Critical value
+7.8147279032511765
+
+    \end{Verbatim}
+
+    \texttt{The\ critical\ value\ of\ 7.81\ \textgreater{}\ 0.62\ of\ chi\ square\ statistic\ and\ We\ don\textquotesingle{}t\ have\ significant\ result\ at\ 5\%\ significance\ level\ since\ the\ p-value(0.89)\ is\ nearly\ 1.00\ which\ shows\ a\ complete\ independency\ between\ the\ two\ variables.}
+
+\texttt{Comparing\ the\ expected\ count\ table\ with\ the\ observed\ count\ further\ reveal\ that\ the\ Loan\ Status\ of\ an\ applicant\ with\ average\ and\ very\ high\ income\ are\ partially\ related\ or\ associated\ because\ there\ is\ a\ significant\ change\ in\ their\ values}
+
+    \subsubsection{Coapplicant Income
+analyze}\label{coapplicant-income-analyze}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}220}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{distplot}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+          \PY{n}{a}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}\PY{n}{notch}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_118_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{We\ see\ a\ similar\ distribution\ as\ that\ of\ the\ applicant\ income.\ Majority\ (more\ than\ 90\%)\ of\ coapplicant’s\ income\ ranges\ from\ 0\ to\ 5000.\ We\ also\ see\ a\ lot\ of\ outliers\ in\ the\ coapplicant\ income\ and\ it\ is\ not\ normally\ distributed.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}221}]:} \PY{c+c1}{\PYZsh{} segregate Applicant Income by Education}
+          \PY{n}{ax}\PY{o}{=}\PY{n}{train}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{ax}\PY{p}{)}
+          \PY{n}{a}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{violinplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}\PY{n}{inner}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+          \PY{n}{a} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{swarmplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Education}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{CoapplicantIncome}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Education
+Graduate        480
+Not Graduate    134
+Name: CoapplicantIncome, dtype: int64
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_120_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \emph{It is shown above that majority of the Coapplicant are graduate
+and they have low income}
+
+    \texttt{The\ descriptive\ statistic\ reveal\ that\ more\ than\ 40\%\ of\ Coapplicant\ has\ 0.0\ income\ and\ it\ was\ earlier\ observed\ that\ 273\ loan\ obervations\ have\ 0.0\ coapplicantIncome}
+
+\texttt{This\ can\ implies\ that\ those\ loan\ requests\ with\ 0.0\ coapplicant\ income\ involved\ only\ one\ person\ OR\ the\ coapplicant\ has\ no\ income\ value\ OR\ he/she\ is\ unemployed}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}222}]:} \PY{n}{coapplicant}\PY{o}{=}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{CoapplicantIncome}
+                       \PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{No coapplicant or Coapplicant has no income}\PY{l+s+s1}{\PYZsq{}} \PY{k}{if} \PY{n}{x}\PY{o}{==}\PY{l+m+mi}{0} \PY{k}{else} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Coapplicant exist and has an income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                       \PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+                       \PY{o}{.}\PY{n}{to\PYZus{}frame}\PY{p}{(}\PY{n}{name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+          \PY{n}{coapplicant}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}222}]:}                                              count
+          Coapplicant exist and has an income            341
+          No coapplicant or Coapplicant has no income    273
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}223}]:} \PY{c+c1}{\PYZsh{} sns.set(style=\PYZdq{}white\PYZdq{})}
+          \PY{n}{fig}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{barplot}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{coapplicant}\PY{o}{.}\PY{n}{index}\PY{p}{,}\PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                      \PY{n}{data}\PY{o}{=}\PY{n}{coapplicant}\PY{p}{,}
+                       \PY{n}{order}\PY{o}{=}\PY{n+nb}{list}\PY{p}{(}\PY{n}{coapplicant}\PY{o}{.}\PY{n}{index}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Distribution of various categories of CoApplicant Income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{15}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{k}{for} \PY{n}{p} \PY{o+ow}{in} \PY{n}{ax}\PY{o}{.}\PY{n}{patches}\PY{p}{:}
+              \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{/}\PY{n}{dict\PYZus{}of\PYZus{}value\PYZus{}counts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,}
+                          \PY{p}{(}\PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mf}{0.30}\PY{p}{,} \PY{n}{p}\PY{o}{.}\PY{n}{get\PYZus{}height}\PY{p}{(}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_124_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{It can be observed that 44.46\% of the loan applicant has no
+coapplicant}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}224}]:} \PY{c+c1}{\PYZsh{} The average coaplicant income excluding those of zero }
+          \PY{n}{a} \PY{o}{=} \PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{CoapplicantIncome}
+           \PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:}\PY{n}{x} \PY{k}{if} \PY{n}{x}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{k}{else} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{)}
+           \PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{skipna}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{l+s+s1}{The true mean of coapplicant income is }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{ aganist }\PY{l+s+si}{\PYZob{}:.2f\PYZcb{}}\PY{l+s+s1}{ that is }
+          \PY{l+s+s1}{obtained if those zeros of no coapplicant or unemployed coapplicant are included in computation}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}  
+              
+          \PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{CoapplicantIncome}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)} \PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The true mean of coapplicant income is 2919.19 aganist 1621.25 that is 
+obtained if those zeros of no coapplicant or unemployed coapplicant are included in computation
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}225}]:} \PY{n}{employed\PYZus{}coapplicant}\PY{o}{=}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{CoapplicantIncome}
+           \PY{o}{.}\PY{n}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:}\PY{n}{x} \PY{k}{if} \PY{n}{x}\PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{k}{else} \PY{n}{np}\PY{o}{.}\PY{n}{nan}\PY{p}{)}
+           \PY{o}{.}\PY{n}{agg}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{std}\PY{p}{]}\PY{p}{)}
+            \PY{o}{.}\PY{n}{to\PYZus{}frame}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{employed\PYZus{}coapplicant}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{min\PYZus{}income of the employed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                        \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean\PYZus{}income of the employed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{max\PYZus{}income of the employed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{std\PYZus{}value of employed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{employed\PYZus{}coapplicant}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}225}]:}                              CoapplicantIncome
+          min\_income of the employed           16.120001
+          mean\_income of the employed        2919.193314
+          max\_income of the employed        41667.000000
+          std\_value of employed              3411.503263
+\end{Verbatim}
+            
+    \texttt{Describe\ statistic\ of\ CoApplicantIncome\ to\ decide\ for\ the\ binning\ range}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}226}]:} \PY{c+c1}{\PYZsh{} the describe statistic of CoApplicantIncome to decide for the binning range}
+          \PY{n}{train}\PY{o}{.}\PY{n}{CoapplicantIncome}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{percentiles}\PY{o}{=}\PY{p}{[}\PY{o}{.}\PY{l+m+mi}{01}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{05}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{25}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{4}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{75}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{85}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{95}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{99}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}226}]:} count      614.000000
+          mean      1621.245798
+          std       2926.248369
+          min          0.000000
+          1\%           0.000000
+          5\%           0.000000
+          10\%          0.000000
+          25\%          0.000000
+          40\%          0.000000
+          50\%       1188.500000
+          75\%       2297.250000
+          85\%       3053.650000
+          95\%       4997.400000
+          99\%       8895.890000
+          max      41667.000000
+          Name: CoapplicantIncome, dtype: float64
+\end{Verbatim}
+            
+    \texttt{I\ concluded\ from\ the\ two\ descriptive\ statistic\ above\ to\ choose\ the\ following\ bins:}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Category & Income range\tabularnewline
+\midrule
+\endhead
+Low & 0-1000\tabularnewline
+Average & 1000-3000\tabularnewline
+High & \textgreater{}3000\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}227}]:} \PY{n}{bins}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1000}\PY{p}{,}\PY{l+m+mi}{3000}\PY{p}{,}\PY{l+m+mi}{42000}\PY{p}{]}
+          \PY{n}{group}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Coapplicant\PYZus{}Income\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{cut}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{p}{,}\PY{n}{labels}\PY{o}{=}\PY{n}{group}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}228}]:} \PY{n}{coapplicantIncome\PYZus{}bin} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Coapplicant\PYZus{}Income\PYZus{}bin}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{coapplicantIncome\PYZus{}bin}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{coapplicantIncome\PYZus{}bin}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{coapplicantIncome\PYZus{}bin}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between CoapplicantIncome\PYZus{}bin and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status              N    Y
+Coapplicant\_Income\_bin         
+Low                      3   19
+Average                 61  161
+High                    32   65
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_132_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}229}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{coapplicantIncome\PYZus{}bin}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+          
+          \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{coapplicantIncome\PYZus{}bin}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 3.4640082184540937
+The P-value is 0.17692946843764604
+The degree of freedom is 2
+The expected count table 
+           0           1
+0   6.193548   15.806452
+1  62.498534  159.501466
+2  27.307918   69.692082
+Critical value
+5.99146454710798
+
+    \end{Verbatim}
+
+    \texttt{It\ shows\ that\ if\ coapplicant’s\ income\ is\ less\ the\ chances\ of\ loan\ approval\ are\ high.\ But\ this\ does\ not\ look\ right.\ The\ possible\ reason\ behind\ this\ may\ be\ that\ most\ of\ the\ applicants\ don’t\ have\ any\ coapplicant\ so\ the\ coapplicant\ income\ for\ such\ applicants\ is\ 0\ and\ hence\ the\ loan\ approval\ is\ not\ dependent\ on\ it.}
+
+\texttt{The\ expected\ count\ table\ show\ that\ there\ is\ significant\ difference\ in\ coapplicant\ with\ low\ and\ high\ income\ when\ compared\ with\ their\ observed\ value.\ This\ tell\ us\ that\ these\ categories\ seems\ to\ be\ associated\ with\ the\ loan\ eligibilty\ status.}
+
+    \texttt{On\ the\ premise\ that\ nearly\ half\ of\ the\ loan\ applicant\ has\ no\ coapplicant\ and\ that\ there\ seems\ to\ be\ an\ association\ between\ loan\ status\ an\ coapplicant\ with\ low\ or\ high\ income.}
+\textbf{\texttt{Let\ assume\ to\ \ combine\ the\ applicant’s\ and\ coapplicant’s\ income\ to\ visualize\ the\ combined\ effect\ of\ income\ on\ loan\ approval.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}230}]:} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ApplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CoapplicantIncome}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \emph{\texttt{Describe\ statistic\ of\ numerical\ variables\ after\ Total\_Income\ has\ been\ computed\ by\ adding\ Applicant\ Income\ and\ Coapplicant\ Income}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}231}]:} \PY{n}{train}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{n}{percentiles}\PY{o}{=}\PY{p}{[}\PY{o}{.}\PY{l+m+mi}{01}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{05}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{25}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{4}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{75}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{85}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{95}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{99}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}231}]:}        ApplicantIncome  CoapplicantIncome  LoanAmount  Loan\_Amount\_Term  \textbackslash{}
+          count       614.000000         614.000000  592.000000         600.00000   
+          mean       5403.459283        1621.245798  146.412162         342.00000   
+          std        6109.041673        2926.248369   85.587325          65.12041   
+          min         150.000000           0.000000    9.000000          12.00000   
+          1\%         1025.000000           0.000000   30.000000          84.00000   
+          5\%         1897.550000           0.000000   56.000000         180.00000   
+          10\%        2216.100000           0.000000   71.000000         294.00000   
+          25\%        2877.500000           0.000000  100.000000         360.00000   
+          40\%        3406.800000           0.000000  116.000000         360.00000   
+          50\%        3812.500000        1188.500000  128.000000         360.00000   
+          75\%        5795.000000        2297.250000  168.000000         360.00000   
+          85\%        7578.250000        3053.650000  192.000000         360.00000   
+          95\%       14583.000000        4997.400000  297.800000         360.00000   
+          99\%       32540.410000        8895.890000  496.360000         480.00000   
+          max       81000.000000       41667.000000  700.000000         480.00000   
+          
+                 Credit\_History  Total\_Income  
+          count      564.000000    614.000000  
+          mean         0.842199   7024.705081  
+          std          0.364878   6458.663872  
+          min          0.000000   1442.000000  
+          1\%           0.000000   2141.510000  
+          5\%           0.000000   2800.500000  
+          10\%          0.000000   3245.800000  
+          25\%          1.000000   4166.000000  
+          40\%          1.000000   4807.400000  
+          50\%          1.000000   5416.500000  
+          75\%          1.000000   7521.750000  
+          85\%          1.000000   9767.000000  
+          95\%          1.000000  16165.500000  
+          99\%          1.000000  37453.020000  
+          max          1.000000  81000.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}232}]:} \PY{n}{ax} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{distplot}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Total\PYZus{}Income}\PY{p}{,} \PY{n}{fit}\PY{o}{=}\PY{n}{norm}\PY{p}{,} \PY{n}{kde}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_139_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{Though\ The\ Total\_Income\ is\ not\ normally\ distributed.\ Its\ value\ still\ give\ a\ reasonable\ evalution\ than\ that\ of\ Applicant\_Income\ or\ Coapplicant\_Income\ alone}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}233}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{distplot}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} train[\PYZsq{}ApplicantIncome\PYZsq{}].plot.box(figsize=(16,5))}
+          \PY{n}{a}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}\PY{n}{notch}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} a = sns.swarmplot( y=\PYZsq{}ApplicantIncome\PYZsq{}, data=train, color=\PYZdq{}.2\PYZdq{})}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_141_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{I\ conclude\ choosing\ the\ following\ bins:}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Category & Income range\tabularnewline
+\midrule
+\endhead
+Low & 0-2500\tabularnewline
+Average & 2500-4000\tabularnewline
+High & 4000-6000\tabularnewline
+Very High & \textgreater{}6000\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}234}]:} \PY{n}{bins}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2500}\PY{p}{,}\PY{l+m+mi}{4000}\PY{p}{,}\PY{l+m+mi}{6000}\PY{p}{,}\PY{l+m+mi}{81000}\PY{p}{]}
+          \PY{n}{group}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Very high}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Income\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{cut}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Total\PYZus{}Income}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{p}{,}\PY{n}{labels}\PY{o}{=}\PY{n}{group}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}235}]:} \PY{n}{total\PYZus{}Income\PYZus{}bin} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{Total\PYZus{}Income\PYZus{}bin}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{total\PYZus{}Income\PYZus{}bin}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{total\PYZus{}Income\PYZus{}bin}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{total\PYZus{}Income\PYZus{}bin}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between total\PYZus{}Income\PYZus{}bin and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}Income\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status        N    Y
+Total\_Income\_bin         
+Low               14   10
+Average           32   87
+High              65  159
+Very high         81  166
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_144_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{We\ can\ see\ that\ Proportion\ of\ loans\ getting\ approved\ for\ applicants\ having\ low\ Total\_Income\ is\ very\ less\ as\ compared\ to\ that\ of\ applicants\ with\ Average,\ High\ and\ Very\ High\ Income.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}236}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{total\PYZus{}Income\PYZus{}bin}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+          
+          \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{total\PYZus{}Income\PYZus{}bin}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{3}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 10.036201335258713
+The P-value is 0.018260904127128785
+The degree of freedom is 3
+The expected count table 
+           0           1
+0   7.504886   16.495114
+1  37.211726   81.788274
+2  70.045603  153.954397
+3  77.237785  169.762215
+Critical value
+7.8147279032511765
+
+    \end{Verbatim}
+
+    \textbf{\emph{The above statistic and chart show that the Total\_Income
+of applicant is associated with the loan eligibility status}}
+
+    \subsubsection{Considering Loan Amount
+variable}\label{considering-loan-amount-variable}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}238}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{121}\PY{p}{)}
+          \PY{n}{train}\PY{o}{=}\PY{n}{train}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{distplot}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LoanAmount}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{122}\PY{p}{)}
+          \PY{n}{a}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{boxplot}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LoanAmount}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{train}\PY{p}{,}\PY{n}{notch}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} train[\PYZsq{}LoanAmount\PYZsq{}].plot.box(figsize=(16,5))}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_149_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{We see a lot of outliers in this variable and the distribution
+is fairly normal.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}239}]:} \PY{n}{bins}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,}\PY{l+m+mi}{200}\PY{p}{,}\PY{l+m+mi}{700}\PY{p}{]}
+          \PY{n}{group}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Low}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Average}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{High}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LoanAmount\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{cut}\PY{p}{(}\PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LoanAmount}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{bins}\PY{p}{,}\PY{n}{labels}\PY{o}{=}\PY{n}{group}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}240}]:} \PY{n}{loanAmount\PYZus{}bin} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{train}\PY{o}{.}\PY{n}{LoanAmount\PYZus{}bin}\PY{p}{,}\PY{n}{train}\PY{o}{.}\PY{n}{Loan\PYZus{}Status}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{total\PYZus{}Income\PYZus{}bin}\PY{p}{)}
+          
+          \PY{p}{(}\PY{n}{loanAmount\PYZus{}bin}\PY{o}{.}\PY{n}{divide}\PY{p}{(}\PY{n}{loanAmount\PYZus{}bin}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                         \PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                          \PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bar}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship between loanAmount\PYZus{}bin and Loan Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{loanAmount\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Percentage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{despine}\PY{p}{(}\PY{n}{left}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{bottom}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Loan\_Status        N    Y
+Total\_Income\_bin         
+Low               14   10
+Average           32   87
+High              65  159
+Very high         81  166
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_152_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{It\ can\ be\ seen\ that\ the\ proportion\ of\ approved\ loans\ is\ higher\ for\ Low\ and\ Average\ Loan\ Amount\ as\ compared\ to\ that\ of\ High\ Loan\ Amount\ which\ supports\ our\ hypothesis\ in\ which\ I\ considered\ earlier\ that\ the\ chances\ of\ loan\ approval\ will\ be\ high\ when\ the\ loan\ amount\ is\ less.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}242}]:} \PY{n}{g}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{dof}\PY{p}{,} \PY{n}{expctd} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2\PYZus{}contingency}\PY{p}{(}\PY{n}{observed}\PY{o}{=} \PY{n}{loanAmount\PYZus{}bin}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The chi square statistic is }\PY{l+s+si}{\PYZob{}g\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The P\PYZhy{}value is }\PY{l+s+si}{\PYZob{}p\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The degree of freedom is }\PY{l+s+si}{\PYZob{}dof\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The expected count table }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{expctd}
+          
+          \PY{c+c1}{\PYZsh{} calculate the chi\PYZhy{}square\PYZhy{}statistic}
+          \PY{n}{expctd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{expctd}\PY{p}{)}
+          \PY{n}{chi\PYZus{}squared\PYZus{}stat} \PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{loanAmount\PYZus{}bin}\PY{o}{\PYZhy{}}\PY{n}{expctd}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{n}{expctd}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} print(chi\PYZus{}squared\PYZus{}stat)}
+          \PY{n}{crit} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{q} \PY{o}{=} \PY{l+m+mf}{0.95}\PY{p}{,} \PY{c+c1}{\PYZsh{} Find the critical value for 95\PYZpc{} confidence*}
+                                \PY{n}{df} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}   \PY{c+c1}{\PYZsh{} *}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Critical value}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{crit}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi square statistic is 7.199509007986851
+The P-value is 0.027330431135482496
+The degree of freedom is 2
+The expected count table 
+           0           1
+0  13.272727   34.727273
+1  50.602273  132.397727
+2   9.125000   23.875000
+Critical value
+5.99146454710798
+
+    \end{Verbatim}
+
+    \textbf{\emph{The above statistic and chart show that the applicant Loan
+amount is associated with the loan eligibility status}}
+
+    \subsubsection{Looking at the correlation between all the numerical
+variables.}\label{looking-at-the-correlation-between-all-the-numerical-variables.}
+
+\texttt{I\ will\ change\ the\ 3+\ in\ dependents\ variable\ to\ 3\ to\ make\ it\ a\ numerical\ variable.I\ will\ also\ convert\ the\ target\ variable’s\ categories\ into\ 0\ and\ 1\ i.e.\ map\ N\ with\ 0\ and\ Y\ with\ 1\ so\ that\ we\ can\ find\ its\ correlation\ with\ numerical\ variables.\ One\ more\ reason\ to\ do\ so\ is\ few\ models\ like\ logistic\ regression\ takes\ only\ numeric\ values\ as\ input.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}121}]:} \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dependents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{test}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dependents}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{N}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+          \PY{n}{train}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}123}]:} \PY{n}{matrix} \PY{o}{=} \PY{n}{train}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+          \PY{n}{matrix}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}123}]:}                    ApplicantIncome  CoapplicantIncome  LoanAmount  \textbackslash{}
+          ApplicantIncome           1.000000          -0.116605    0.570909   
+          CoapplicantIncome        -0.116605           1.000000    0.188619   
+          LoanAmount                0.570909           0.188619    1.000000   
+          Loan\_Amount\_Term         -0.045306          -0.059878    0.039447   
+          Credit\_History           -0.014715          -0.002056   -0.008433   
+          Loan\_Status              -0.004710          -0.059187   -0.037318   
+          Total\_Income              0.893037           0.342781    0.624621   
+          
+                             Loan\_Amount\_Term  Credit\_History  Loan\_Status  Total\_Income  
+          ApplicantIncome           -0.045306       -0.014715    -0.004710      0.893037  
+          CoapplicantIncome         -0.059878       -0.002056    -0.059187      0.342781  
+          LoanAmount                 0.039447       -0.008433    -0.037318      0.624621  
+          Loan\_Amount\_Term           1.000000        0.001470    -0.021268     -0.069948  
+          Credit\_History             0.001470        1.000000     0.561678     -0.015109  
+          Loan\_Status               -0.021268        0.561678     1.000000     -0.031271  
+          Total\_Income              -0.069948       -0.015109    -0.031271      1.000000  
+\end{Verbatim}
+            
+    \emph{Stastically absolute value of 0.25 is used as benchmark for
+correlation between two features}
+
+\texttt{So\ get\ correlation\ between\ variables\ and\ set\ those\ less\ than\ 0.25\ to\ 0}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}124}]:} \PY{n}{matrix\PYZus{}corr}\PY{o}{=}\PY{n}{train}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{applymap}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x} \PY{k}{if} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{\PYZgt{}}\PY{l+m+mf}{0.25} \PY{k}{else} \PY{l+m+mi}{0}\PY{p}{)}
+          \PY{n}{matrix\PYZus{}corr}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}124}]:}                    ApplicantIncome  CoapplicantIncome  LoanAmount  \textbackslash{}
+          ApplicantIncome           1.000000           0.000000    0.570909   
+          CoapplicantIncome         0.000000           1.000000    0.000000   
+          LoanAmount                0.570909           0.000000    1.000000   
+          Loan\_Amount\_Term          0.000000           0.000000    0.000000   
+          Credit\_History            0.000000           0.000000    0.000000   
+          Loan\_Status               0.000000           0.000000    0.000000   
+          Total\_Income              0.893037           0.342781    0.624621   
+          
+                             Loan\_Amount\_Term  Credit\_History  Loan\_Status  Total\_Income  
+          ApplicantIncome                 0.0        0.000000     0.000000      0.893037  
+          CoapplicantIncome               0.0        0.000000     0.000000      0.342781  
+          LoanAmount                      0.0        0.000000     0.000000      0.624621  
+          Loan\_Amount\_Term                1.0        0.000000     0.000000      0.000000  
+          Credit\_History                  0.0        1.000000     0.561678      0.000000  
+          Loan\_Status                     0.0        0.561678     1.000000      0.000000  
+          Total\_Income                    0.0        0.000000     0.000000      1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}126}]:} \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{matrix}\PY{p}{,} \PY{n}{vmax}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{8}\PY{p}{,} \PY{n}{square}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{BuPu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_161_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}128}]:} \PY{n}{matrix\PYZus{}corr\PYZus{}sorted} \PY{o}{=} \PY{n}{matrix\PYZus{}corr}\PY{o}{.}\PY{n}{reindex}\PY{p}{(}
+              \PY{n}{columns}\PY{o}{=}\PY{p}{(} \PY{n+nb}{list}\PY{p}{(}\PY{p}{[}\PY{n}{a} \PY{k}{for} \PY{n}{a} \PY{o+ow}{in} \PY{n}{matrix\PYZus{}corr}\PY{o}{.}\PY{n}{columns} \PY{k}{if} \PY{n}{a} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o}{+}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{p}{)}\PY{p}{,}
+                                \PY{n}{index}\PY{o}{=}\PY{p}{(} \PY{n+nb}{list}\PY{p}{(}\PY{p}{[}\PY{n}{a} \PY{k}{for} \PY{n}{a} \PY{o+ow}{in} \PY{n}{matrix\PYZus{}corr}\PY{o}{.}\PY{n}{columns} \PY{k}{if} \PY{n}{a} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)} \PY{o}{+}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Loan\PYZus{}Status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+          
+          \PY{n}{matrix\PYZus{}corr\PYZus{}sorted}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}128}]:}                    ApplicantIncome  CoapplicantIncome  LoanAmount  \textbackslash{}
+          ApplicantIncome           1.000000           0.000000    0.570909   
+          CoapplicantIncome         0.000000           1.000000    0.000000   
+          LoanAmount                0.570909           0.000000    1.000000   
+          Loan\_Amount\_Term          0.000000           0.000000    0.000000   
+          Credit\_History            0.000000           0.000000    0.000000   
+          Total\_Income              0.893037           0.342781    0.624621   
+          Loan\_Status               0.000000           0.000000    0.000000   
+          
+                             Loan\_Amount\_Term  Credit\_History  Total\_Income  Loan\_Status  
+          ApplicantIncome                 0.0        0.000000      0.893037     0.000000  
+          CoapplicantIncome               0.0        0.000000      0.342781     0.000000  
+          LoanAmount                      0.0        0.000000      0.624621     0.000000  
+          Loan\_Amount\_Term                1.0        0.000000      0.000000     0.000000  
+          Credit\_History                  0.0        1.000000      0.000000     0.561678  
+          Total\_Income                    0.0        0.000000      1.000000     0.000000  
+          Loan\_Status                     0.0        0.561678      0.000000     1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}131}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+          \PY{c+c1}{\PYZsh{} plt.title(\PYZsq{}Visualization chart showing strength of correlated variables\PYZsq{})}
+          \PY{n}{a}\PY{o}{=}\PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{matrix\PYZus{}corr\PYZus{}sorted}\PY{p}{,}\PY{n}{cmap}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BuPu}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}
+                       \PY{n}{linewidths}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{,}\PY{n}{linecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{setp}\PY{p}{(}\PY{n}{a}\PY{o}{.}\PY{n}{get\PYZus{}xticklabels}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{12}\PY{p}{,}\PY{n}{rotation}\PY{o}{=}\PY{l+m+mi}{75}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{text} 
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}131}]:} <function matplotlib.pyplot.text>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_163_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \texttt{We\ \ use\ \ heat\ map\ to\ visualize\ the\ correlation.\ Heatmaps\ visualize\ data\ through\ variations\ in\ coloring.\ The\ variables\ with\ darker\ color\ means\ their\ correlation\ is\ more.}
+
+    \texttt{We\ see\ that\ the\ most\ correlated\ variables\ are\ (ApplicantIncome\ -\ LoanAmount)\ ,(TotalIncome\ -\ LoanAmount)\ and\ (Credit\_History\ -\ Loan\_Status).\ LoanAmount\ is\ also\ correlated\ with\ CoapplicantIncome.}
+
+    \textbf{\emph{We now have a better idea of what our data looks like and
+which variables are important to take into account when predicting loan
+eligibility status. We have narrowed it down to the following
+variables:}}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Married\ Status}
+\item
+  \texttt{Education}
+\item
+  \texttt{Credit\_History}
+\item
+  \texttt{Property\_Area}
+\item
+  \texttt{Coapplicant\_Income}
+\item
+  \texttt{Total\_Income}
+\item
+  \texttt{Loan\ Amount}
+\end{itemize}
+
+\texttt{AS\ we\ now\ move\ into\ building\ machine\ learning\ models\ to\ automate\ our\ analysis,\ dealing\ with\ missing\ values,\ feeding\ the\ model\ with\ variables\ that\ meaningfully\ affect\ our\ target\ variable\ will\ improve\ our\ model\textquotesingle{}s\ prediction\ performance.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{c+c1}{\PYZsh{} check for missing values in numerical variables}
+         \PY{n}{train}\PY{o}{.}\PY{n}{select\PYZus{}dtypes}\PY{p}{(}\PY{n}{include}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{number}\PY{p}{)}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{n}{memory\PYZus{}usage}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{deep}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 614 entries, 0 to 613
+Data columns (total 5 columns):
+ApplicantIncome      614 non-null int64
+CoapplicantIncome    614 non-null float64
+LoanAmount           592 non-null float64
+Loan\_Amount\_Term     600 non-null float64
+Credit\_History       564 non-null float64
+dtypes: float64(4), int64(1)
+memory usage: 24.1 KB
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
